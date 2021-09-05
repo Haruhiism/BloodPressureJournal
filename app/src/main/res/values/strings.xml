@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Blood Pressure Journal</string>
+    <string name="add_reading">Add Reading</string>
+
+    <string name="hint_systolic">Systolic Value…</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Word not saved because it is empty.</string>
+
+</resources>
