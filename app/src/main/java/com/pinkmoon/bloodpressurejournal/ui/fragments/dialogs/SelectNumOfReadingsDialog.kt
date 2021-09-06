@@ -42,14 +42,14 @@ class SelectNumOfReadingsDialog : DialogFragment() {
             when (radio?.id) {
                 R.id.rb_dialog_select_num_of_holder_single_reading -> {
                     val action = SelectNumOfReadingsDialogDirections
-                        .actionSelectNumOfReadingsDialogToBPReadingHolderFragment()
+                        .actionSelectNumOfReadingsDialogToBPReadingHolderFragment(1)
                     findNavController().navigate(action)
 //                    mListener.passUserReadingSelection(1)
 //                    dismiss()
                 }
                 R.id.rb_dialog_select_num_of_holder_three_readings -> {
                     val action = SelectNumOfReadingsDialogDirections
-                        .actionSelectNumOfReadingsDialogToBPReadingHolderFragment()
+                        .actionSelectNumOfReadingsDialogToBPReadingHolderFragment(3)
                     findNavController().navigate(action)
 //                    mListener.passUserReadingSelection(3)
 //                    dismiss()

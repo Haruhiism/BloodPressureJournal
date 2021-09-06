@@ -6,11 +6,14 @@ import android.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.navigation.fragment.navArgs
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.pinkmoon.bloodpressurejournal.R
 
 class BPReadingHolderFragment : Fragment(R.layout.fragment_bp_reading_holder) {
+
+    private val args: BPReadingHolderFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,11 +29,15 @@ class BPReadingHolderFragment : Fragment(R.layout.fragment_bp_reading_holder) {
     }
 
     private fun setupViewPager(viewpager: ViewPager) {
-        var adapter: ViewPageAdapter = ViewPageAdapter(parentFragmentManager) // maybe child instead?
+        var adapter = ViewPageAdapter(childFragmentManager) // maybe child instead?
 
-        adapter.addFragment(NewReadingFragment(), "Reading 1")
-        adapter.addFragment(NewReadingFragment(), "Reading 2")
-        adapter.addFragment(NewReadingFragment(), "Reading 3")
+        if(args.numberOfReadings == 1) {
+            adapter.addFragment(NewReadingFragment(), "Reading 1")
+        } else if (args.numberOfReadings == 3) {
+            adapter.addFragment(NewReadingFragment(), "Reading 1")
+            adapter.addFragment(NewReadingFragment(), "Reading 2")
+            adapter.addFragment(NewReadingFragment(), "Reading 3")
+        }
 
         viewpager.adapter = adapter
     }
@@ -40,7 +47,7 @@ class BPReadingHolderFragment : Fragment(R.layout.fragment_bp_reading_holder) {
         private var fragmentList1: ArrayList<Fragment> = ArrayList()
         private var fragmentTitleList1: ArrayList<String> = ArrayList()
 
-        public constructor(supportFragmentManager: FragmentManager)
+        constructor(supportFragmentManager: FragmentManager)
                 : super(supportFragmentManager)
 
         override fun getCount(): Int {
