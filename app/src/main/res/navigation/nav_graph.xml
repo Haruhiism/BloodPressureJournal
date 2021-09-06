@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.pinkmoon.bloodpressurejournal.ui.fragments.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_selectNumOfReadingsDialog"
             app:destination="@id/selectNumOfReadingsDialog" />
@@ -30,12 +30,34 @@
     <fragment
         android:id="@+id/BPReadingHolderFragment"
         android:name="com.pinkmoon.bloodpressurejournal.ui.fragments.BPReadingHolderFragment"
-        android:label="fragment_bp_reading_holder"
-        tools:layout="@layout/fragment_bp_reading_holder" >
+        android:label="@string/fragment_reading_holder_title"
+        tools:layout="@layout/fragment_bp_reading_holder">
         <argument
             android:name="numberOfReadings"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.pinkmoon.bloodpressurejournal.ui.fragments.SettingsFragment"
+        android:label="@string/fragment_settings_title"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/termsFragment"
+        android:name="com.pinkmoon.bloodpressurejournal.ui.fragments.TermsFragment"
+        android:label="@string/fragment_terms_title"
+        tools:layout="@layout/fragment_terms" />
+    <action
+        android:id="@+id/action_global_termsFragment"
+        app:destination="@id/termsFragment"
+        app:enterAnim="@anim/slide_in_top"
+        app:exitAnim="@anim/slide_out_bottom"
+        app:popEnterAnim="@anim/slide_in_bottom"
+        app:popExitAnim="@anim/slide_out_top" />
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.pinkmoon.bloodpressurejournal.ui.fragments.StatisticsFragment"
+        android:label="@string/fragment_statistics_title"
+        tools:layout="@layout/fragment_statistics" />
 
 
 </navigation>

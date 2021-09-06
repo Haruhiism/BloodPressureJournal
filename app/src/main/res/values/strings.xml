@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Blood Pressure Journal</string>
+    <string name="fragment_settings_title">Settings</string>
+    <string name="fragment_terms_title">Terms &amp; Conditions</string>
+    <string name="fragment_statistics_title">Statistics</string>
+    <string name="fragment_daily_readings_title">Daily Readings</string>
     <string name="add_reading">Add Reading</string>
 
     <string name="hint_systolic">Systolic Value…</string>
@@ -11,6 +15,7 @@
     <string name="bottom_navigation_main_reminders">Reminders</string>
 
     <!-- fragment_add_reading -->
+    <string name="fragment_reading_holder_title">Add New Reading</string>
     <string name="fragment_add_reading_systolic">Systolic value</string>
     <string name="fragment_add_reading_diastolic">Diastolic value</string>
     <string name="fragment_add_reading_pulse">Pulse</string>

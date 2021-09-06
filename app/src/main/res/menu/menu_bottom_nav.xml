@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:title="@string/fragment_daily_readings_title"
+        android:icon="@drawable/ic_heart_pulse" />
+
+    <item
+        android:id="@+id/statisticsFragment"
+        android:title="@string/fragment_statistics_title"
+        android:icon="@drawable/ic_statistics" />
+
+</menu>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!-- The id property here will take up the exact same name as the
+        name within the nav_graph under 'id' there. This is because
+        we want to give access to this menu directly from its id
+        anywhere within the app where the toolbar is displayed. -->
+    <item
+        android:id="@+id/settingsFragment"
+        android:title="@string/fragment_settings_title"
+        android:menuCategory="secondary"
+        app:showAsAction="never" />
+<!-- Adding android:menuCategory="secondary" will prevent the tap of
+        the back button on the toolbar from navigating back
+        to the Home destination location, instead it will return
+        to the appropriate location within the backstack. -->
+
+<!-- The id below is an arbitrary id; not an id from nav components.
+        This is because we want to use this button as a regular
+        menu options button, not to navigate as a Global Action. -->
+    <item
+        android:id="@+id/termsAndConditions"
+        android:title="@string/fragment_terms_title"
+        app:showAsAction="never" />
+
+</menu>
