@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BloodPressureJournal">
         <activity
-            android:name=".ui.NewBPReadingActivity"
+            android:name=".ui.activities.NewBPReadingActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

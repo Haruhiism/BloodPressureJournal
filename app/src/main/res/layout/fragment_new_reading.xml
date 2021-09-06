@@ -1,10 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="65dp"
     android:gravity="center">
 
-    <!-- TODO add the number picker elements -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:textColor="@color/retro_red_orange"
+        android:text="@string/fragment_add_reading_systolic"/>
+
+    <com.shawnlin.numberpicker.NumberPicker
+        android:id="@+id/np_fragment_add_reading_systolic_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:np_dividerColor="@color/retro_blue"
+        app:np_max="220"
+        app:np_min="50"
+        app:np_value="120"
+        app:np_order="descending"
+        app:np_selectedTextColor="@color/retro_blue"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:textColor="@color/retro_pink"
+        android:text="@string/fragment_add_reading_diastolic"/>
+
+    <com.shawnlin.numberpicker.NumberPicker
+        android:id="@+id/np_fragment_add_reading_diastolic_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:np_dividerColor="@color/retro_blue"
+        app:np_max="150"
+        app:np_min="40"
+        app:np_value="80"
+        app:np_order="descending"
+        app:np_selectedTextColor="@color/retro_blue"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp"
+        android:textAlignment="center"
+        android:textColor="@color/retro_green"
+        android:text="@string/fragment_add_reading_pulse"/>
+
+    <com.shawnlin.numberpicker.NumberPicker
+        android:id="@+id/np_fragment_add_reading_pulse_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:np_dividerColor="@color/retro_blue"
+        app:np_orientation="horizontal"
+        app:np_max="200"
+        app:np_min="40"
+        app:np_value="72"
+        app:np_selectedTextColor="@color/retro_blue"
+        android:layout_weight="1"/>
 
 </LinearLayout>

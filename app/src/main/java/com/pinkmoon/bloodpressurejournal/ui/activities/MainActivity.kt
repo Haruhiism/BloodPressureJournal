@@ -1,4 +1,4 @@
-package com.pinkmoon.bloodpressurejournal.ui
+package com.pinkmoon.bloodpressurejournal.ui.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -15,8 +15,9 @@ import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReading
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReadingListAdapter
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReadingViewModel
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReadingViewModelFactory
+import com.pinkmoon.bloodpressurejournal.ui.fragments.dialogs.SelectNumOfReadingsDialog
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SelectNumOfReadingsDialog.SelectNumOfReadingsDialogListener {
 
     private val newBPReadingActivityRequestCode = 1
 
@@ -39,8 +40,10 @@ class MainActivity : AppCompatActivity() {
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener {
-            val intent = Intent(this@MainActivity, NewBPReadingActivity::class.java)
-            startActivityForResult(intent, newBPReadingActivityRequestCode)
+            var dialogSelectNumOfReadingsDialog = SelectNumOfReadingsDialog()
+            dialogSelectNumOfReadingsDialog.show(supportFragmentManager, "dialogSelectNumOfReadingsDialog")
+//            val intent = Intent(this@MainActivity, NewBPReadingActivity::class.java)
+//            startActivityForResult(intent, newBPReadingActivityRequestCode)
         }
     }
 
@@ -59,5 +62,13 @@ class MainActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         }
+    }
+
+    override fun passUserReadingSelection(numOfReadings: Int) {
+        Toast.makeText(
+            applicationContext,
+            "User selected $numOfReadings reading(s).",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

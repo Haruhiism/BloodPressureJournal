@@ -9,4 +9,28 @@
     <color name="white">#FFFFFFFF</color>
     <color name="buttonLabel">#FFFFFF</color>
 
+    <color name="fadedPurpleBackground">#736C83</color>
+    <color name="backgroundMain">#252120</color>
+    <color name="bloodyRed">#A92F41</color>
+    <color name="pistachioGreen">#91C7A9</color>
+    <color name="pistachioGreenDark">#527260</color>
+    <color name="textDefaultLight">#e5dfc5</color>
+    <color name="blueSkyee">#6ABED8</color>
+    <color name="blueSkyeeLight">#7AAAC0</color>
+    <color name="darkRed">#73192A</color>
+    <color name="salmonish">#E46A68</color>
+    <color name="lightPumpkin">#E2A571</color>
+    <color name="pumpkin">#DE8D47</color>
+    <color name="darkPumpkin">#B14D1D</color>
+    <color name="tables">#5B6073</color>
+    <color name="passField">#DCDCDC</color>
+    <color name="cardBckgndDark">#2C2F35</color>
+    <color name="employeeBlunder">#816B6B</color>
+
+    <color name="retro_pink">#e5c3c6</color>
+    <color name="retro_green">#A5D6A7</color>
+    <color name="retro_red_orange">#f96161</color>
+    <color name="retro_blue">#bcd2d0</color>
+
+
 </resources>

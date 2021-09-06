@@ -6,4 +6,58 @@
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
 
+    <string name="bottom_navigation_main_daily_readings">Daily Readings</string>
+    <string name="bottom_navigation_main_statistics">Statistics</string>
+    <string name="bottom_navigation_main_reminders">Reminders</string>
+
+    <!-- fragment_add_reading -->
+    <string name="fragment_add_reading_systolic">Systolic value</string>
+    <string name="fragment_add_reading_diastolic">Diastolic value</string>
+    <string name="fragment_add_reading_pulse">Pulse</string>
+
+    <!-- dialog strings -->
+    <string name="dialog_reading_selector">How many readings?</string>
+    <string name="dialog_reading_single">Single reading</string>
+    <string name="dialog_reading_average">Average readings</string>
+    <string name="dialog_reading_average_3">Average of 3 readings</string>
+    <string name="dialog_reading_average_5">Average of 5</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_okay">Okay</string>
+
+    <!-- multiple readings activity/fragment -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_reading_holder">Log a BP reading</string>
+    <string name="tab_reading_1">Reading 1</string>
+    <string name="tab_reading_2">Reading 2</string>
+    <string name="tab_reading_3">Reading 3</string>
+    <string name="tab_reading_4">Reading 4</string>
+    <string name="tab_reading_5">Reading 5</string>
+
+    <!-- dialog strings -->
+    <string name="menu_add_reading_save">Save</string>
+    <string name="menu_add_reading_update">Update</string>
+    <string name="menu_add_reading_save_all_readings">Submit all</string>
+    <string name="menu_add_reading_discard">Discard</string>
+
+    <!-- dialog BP Ranges info strings-->
+    <string name="dialog_bp_ranges_info_normal_title">Ideal/Normal</string>
+    <string name="dialog_bp_ranges_info_elevated_title">Elevated</string>
+    <string name="dialog_bp_ranges_info_hyp_stage_1_title">Hypertension Stage 1</string>
+    <string name="dialog_bp_ranges_info_hyp_stage_2_title">Hypertension Stage 2</string>
+    <string name="dialog_bp_ranges_info_hyp_crisis_title">Hypertensive crisis</string>
+
+    <string name="dialog_bp_ranges_info_normal">Blood pressure numbers of less than 120/80 mm Hg are considered within the normal range. \nIf your results fall into this category, stick with heart-healthy habits like following a balanced diet and getting regular exercise.</string>
+    <string name="dialog_bp_ranges_info_elevated">Elevated blood pressure is when readings consistently range from 120–129 systolic and less than 80 mm Hg diastolic. \nPeople with elevated blood pressure are likely to develop high blood pressure unless steps are taken to control the condition.</string>
+    <string name="dialog_bp_ranges_info_hyp_stage_1">Hypertension Stage 1 is when blood pressure consistently ranges from 130–139 systolic or 80–89 mm Hg diastolic. \nAt this stage of high blood pressure, doctors are likely to prescribe lifestyle changes and may consider adding blood pressure medication based on your risk of atherosclerotic cardiovascular disease (ASCVD), such as heart attack or stroke.</string>
+    <string name="dialog_bp_ranges_info_hyp_stage_2">Hypertension Stage 2 is when blood pressure consistently ranges at 140/90 mm Hg or higher. \nAt this stage of high blood pressure, doctors are likely to prescribe a combination of blood pressure medications and lifestyle changes.</string>
+    <string name="dialog_bp_ranges_info_hyp_crisis">This stage of high blood pressure requires medical attention. If your blood pressure readings suddenly exceed 180/120 mm Hg, wait five minutes and then test your blood pressure again. \nIf your readings are still unusually high, contact your doctor immediately. You could be experiencing a hypertensive crisis. \nIf your blood pressure is higher than 180/120 mm Hg and you are experiencing signs of possible organ damage such as chest pain, shortness of breath, back pain, numbness/weakness, change in vision or difficulty speaking, do not wait to see if your pressure comes down on its own. Call 911.</string>
+
+    <!-- fragment_statistics_main avgDate range to display spinner -->
+    <string-array name="arr_fragment_statistics_main_date_selector">
+        <item>Select a range to display…</item>
+        <item>This week</item>
+        <item>Today</item>
+        <item>Custom range…</item>
+    </string-array>
+
 </resources>

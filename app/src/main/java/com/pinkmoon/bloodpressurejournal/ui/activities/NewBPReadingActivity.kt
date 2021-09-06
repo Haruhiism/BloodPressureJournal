@@ -1,4 +1,4 @@
-package com.pinkmoon.bloodpressurejournal.ui
+package com.pinkmoon.bloodpressurejournal.ui.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -9,6 +9,9 @@ import android.widget.Button
 import android.widget.EditText
 import com.pinkmoon.bloodpressurejournal.R
 
+/**
+ * Holds the tab layout fragments for readings
+ */
 class NewBPReadingActivity : AppCompatActivity() {
 
     private lateinit var editWordView: EditText
