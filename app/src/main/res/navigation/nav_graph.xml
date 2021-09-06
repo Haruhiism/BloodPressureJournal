@@ -18,7 +18,20 @@
         android:id="@+id/selectNumOfReadingsDialog"
         android:name="com.pinkmoon.bloodpressurejournal.ui.fragments.dialogs.SelectNumOfReadingsDialog"
         android:label="dialog_select_num_of_readings"
-        tools:layout="@layout/dialog_select_num_of_readings" />
+        tools:layout="@layout/dialog_select_num_of_readings" >
+        <action
+            android:id="@+id/action_selectNumOfReadingsDialog_to_BPReadingHolderFragment"
+            app:destination="@id/BPReadingHolderFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </dialog>
+    <fragment
+        android:id="@+id/BPReadingHolderFragment"
+        android:name="com.pinkmoon.bloodpressurejournal.ui.fragments.BPReadingHolderFragment"
+        android:label="fragment_bp_reading_holder"
+        tools:layout="@layout/fragment_bp_reading_holder" />
 
 
 </navigation>

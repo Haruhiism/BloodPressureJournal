@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.findNavController
 import com.pinkmoon.bloodpressurejournal.R
 import kotlin.ClassCastException
 
@@ -40,12 +41,18 @@ class SelectNumOfReadingsDialog : DialogFragment() {
 
             when (radio?.id) {
                 R.id.rb_dialog_select_num_of_holder_single_reading -> {
-                    mListener.passUserReadingSelection(1)
-                    dismiss()
+                    val action = SelectNumOfReadingsDialogDirections
+                        .actionSelectNumOfReadingsDialogToBPReadingHolderFragment()
+                    findNavController().navigate(action)
+//                    mListener.passUserReadingSelection(1)
+//                    dismiss()
                 }
                 R.id.rb_dialog_select_num_of_holder_three_readings -> {
-                    mListener.passUserReadingSelection(3)
-                    dismiss()
+                    val action = SelectNumOfReadingsDialogDirections
+                        .actionSelectNumOfReadingsDialogToBPReadingHolderFragment()
+                    findNavController().navigate(action)
+//                    mListener.passUserReadingSelection(3)
+//                    dismiss()
                 }
                 else -> {
                     Toast.makeText(

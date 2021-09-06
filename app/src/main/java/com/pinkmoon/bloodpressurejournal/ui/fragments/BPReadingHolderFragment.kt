@@ -17,7 +17,7 @@ class BPReadingHolderFragment : Fragment(R.layout.fragment_bp_reading_holder) {
 
         // Create the object of Toolbar, ViewPager and
         // TabLayout and use “findViewById()” method*/
-        var tab_toolbar = view.findViewById<Toolbar>(R.id.toolbar)
+//        var tab_toolbar = view.findViewById<Toolbar>(R.id.toolbar)
         var tab_viewpager = view.findViewById<ViewPager>(R.id.tab_viewpager)
         var tab_tablayout = view.findViewById<TabLayout>(R.id.tab_tablayout)
 
