@@ -29,22 +29,22 @@ class MainActivity : AppCompatActivity(), SelectNumOfReadingsDialog.SelectNumOfR
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
-        val adapter = BPReadingListAdapter()
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+//        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
+//        val adapter = BPReadingListAdapter()
+//        recyclerView.adapter = adapter
+//        recyclerView.layoutManager = LinearLayoutManager(this)
+//
+//        bpReadingViewModel.allBpReadings.observe(this, { bpReading ->
+//            bpReading.let { adapter.submitList(it) }
+//        })
 
-        bpReadingViewModel.allBpReadings.observe(this, { bpReading ->
-            bpReading.let { adapter.submitList(it) }
-        })
-
-        val fab = findViewById<FloatingActionButton>(R.id.fab)
-        fab.setOnClickListener {
-            var dialogSelectNumOfReadingsDialog = SelectNumOfReadingsDialog()
-            dialogSelectNumOfReadingsDialog.show(supportFragmentManager, "dialogSelectNumOfReadingsDialog")
-//            val intent = Intent(this@MainActivity, NewBPReadingActivity::class.java)
-//            startActivityForResult(intent, newBPReadingActivityRequestCode)
-        }
+//        val fab = findViewById<FloatingActionButton>(R.id.fab)
+//        fab.setOnClickListener {
+//            var dialogSelectNumOfReadingsDialog = SelectNumOfReadingsDialog()
+//            dialogSelectNumOfReadingsDialog.show(supportFragmentManager, "dialogSelectNumOfReadingsDialog")
+////            val intent = Intent(this@MainActivity, NewBPReadingActivity::class.java)
+////            startActivityForResult(intent, newBPReadingActivityRequestCode)
+//        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -65,10 +65,11 @@ class MainActivity : AppCompatActivity(), SelectNumOfReadingsDialog.SelectNumOfR
     }
 
     override fun passUserReadingSelection(numOfReadings: Int) {
-        Toast.makeText(
-            applicationContext,
-            "User selected $numOfReadings reading(s).",
-            Toast.LENGTH_SHORT
-        ).show()
+
+//        Toast.makeText(
+//            applicationContext,
+//            "User selected $numOfReadings reading(s).",
+//            Toast.LENGTH_SHORT
+//        ).show()
     }
 }
