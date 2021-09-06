@@ -1,4 +1,4 @@
-package com.pinkmoon.bloodpressurejournal
+package com.pinkmoon.bloodpressurejournal.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -9,6 +9,8 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.pinkmoon.bloodpressurejournal.BloodPressureJournalApplication
+import com.pinkmoon.bloodpressurejournal.R
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReading
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReadingListAdapter
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReadingViewModel

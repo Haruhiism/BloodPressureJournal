@@ -84,4 +84,8 @@ dependencies {
 
     // NumberPicker
     implementation 'com.shawnlin:number-picker:2.4.8'
+
+    // Navigation Component dependencies
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
 }
