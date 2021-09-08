@@ -5,12 +5,14 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Layout
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
@@ -23,6 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.pinkmoon.bloodpressurejournal.BloodPressureJournalApplication
 import com.pinkmoon.bloodpressurejournal.NavGraphDirections
 import com.pinkmoon.bloodpressurejournal.R
@@ -31,8 +34,10 @@ import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReadingListAdapter
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReadingViewModel
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReadingViewModelFactory
 import com.pinkmoon.bloodpressurejournal.ui.fragments.dialogs.SelectNumOfReadingsDialog
+import com.pinkmoon.bloodpressurejournal.ui.fragments.new_reading.NewReadingFragment
 
-class MainActivity : AppCompatActivity(), SelectNumOfReadingsDialog.SelectNumOfReadingsDialogListener {
+class MainActivity : AppCompatActivity(),
+    SelectNumOfReadingsDialog.SelectNumOfReadingsDialogListener {
 
     private val newBPReadingActivityRequestCode = 1
 
@@ -43,6 +48,9 @@ class MainActivity : AppCompatActivity(), SelectNumOfReadingsDialog.SelectNumOfR
     private lateinit var navController: NavController
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+
+    // widgets
+    lateinit var rootView: ConstraintLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +77,8 @@ class MainActivity : AppCompatActivity(), SelectNumOfReadingsDialog.SelectNumOfR
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         bottomNav.setupWithNavController(navController)
+
+        rootView = findViewById<ConstraintLayout>(R.id.cl_activity_main_root_view)
 
 //        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
 //        val adapter = BPReadingListAdapter()
@@ -141,4 +151,14 @@ class MainActivity : AppCompatActivity(), SelectNumOfReadingsDialog.SelectNumOfR
 //            Toast.LENGTH_SHORT
 //        ).show()
     }
+
+//    override fun passBPReadingObj(bpReading: BPReading, fragmentTitle: String) {
+//        var snack = Snackbar.make(rootView,
+//            "Systolic: ${bpReading.systolicValue}, " +
+//                    "Diastolic: ${bpReading.diastolicValue}, " +
+//                    "Pulse: ${bpReading.pulseValue} " +
+//                    "from $fragmentTitle",
+//            Snackbar.LENGTH_LONG)
+//        snack.show()
+//    }
 }

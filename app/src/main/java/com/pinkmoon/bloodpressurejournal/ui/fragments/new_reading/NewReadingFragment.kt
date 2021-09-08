@@ -1,5 +1,6 @@
 package com.pinkmoon.bloodpressurejournal.ui.fragments.new_reading
 
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -10,7 +11,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.pinkmoon.bloodpressurejournal.R
+import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReading
 import com.shawnlin.numberpicker.NumberPicker
+import java.lang.ClassCastException
+
 
 class NewReadingFragment : Fragment(R.layout.fragment_new_reading) {
 
@@ -25,9 +29,18 @@ class NewReadingFragment : Fragment(R.layout.fragment_new_reading) {
     private var selectedDiasVal: Int = 0
     private var selectedPulseVal: Int = 0
 
+    private var bpReadingObj = BPReading()
+
+    // lateinit var mListener: NewReadingFragmentListener
+
+    lateinit var callback: OnNewReadingFragmentListener
+
+    lateinit var fragmentTitle: String
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        fragmentTitle = arguments?.getString("KEY") ?: "Could not get title."
         setHasOptionsMenu(true)
         defineViews(view)
         defineObservers()
@@ -92,16 +105,22 @@ class NewReadingFragment : Fragment(R.layout.fragment_new_reading) {
         npSystolicVal?.setOnValueChangedListener { _, _, newVal ->
             setSelectedSystolicVal(newVal)
             newReadingFragmentViewModel.currentSystolicValue.value = newVal
+            recreateBPReadingObj(selectedSysVal, selectedDiasVal, selectedPulseVal)
+            callback.passBPReadingObj(bpReadingObj, fragmentTitle)
         }
 
         npDiastolicVal?.setOnValueChangedListener { _, _, newVal ->
             setSelectedDiastolicVal(newVal)
             newReadingFragmentViewModel.currentDiastolicValue.value = newVal
+            recreateBPReadingObj(selectedSysVal, selectedDiasVal, selectedPulseVal)
+            callback.passBPReadingObj(bpReadingObj, fragmentTitle)
         }
 
         npPulseVal?.setOnValueChangedListener { _, _, newVal ->
             setSelectedPulseVal(newVal)
             newReadingFragmentViewModel.currentPulseValue.value = newVal
+            recreateBPReadingObj(selectedSysVal, selectedDiasVal, selectedPulseVal)
+            callback.passBPReadingObj(bpReadingObj, fragmentTitle)
         }
     }
 
@@ -110,4 +129,30 @@ class NewReadingFragment : Fragment(R.layout.fragment_new_reading) {
     private fun setSelectedDiastolicVal(newVal: Int) { selectedDiasVal = newVal }
 
     private fun setSelectedPulseVal(newVal: Int) { selectedPulseVal = newVal }
+
+    private fun recreateBPReadingObj(systolicVal: Int, diastolicVal: Int, pulseVal: Int) {
+        bpReadingObj.systolicValue = systolicVal
+        bpReadingObj.diastolicValue = diastolicVal
+        bpReadingObj.pulseValue = pulseVal
+    }
+
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        try {
+//            mListener = context as NewReadingFragmentListener
+//        } catch (e: ClassCastException) {
+//            throw ClassCastException("$context must implement NewReadingFragmentListener.")
+//        }
+//    }
+
+    fun setOnNewReadingFragmentListener(callback: OnNewReadingFragmentListener) {
+        this.callback = callback
+    }
+
+    interface OnNewReadingFragmentListener {
+        fun passBPReadingObj(bpReading: BPReading, fragmentTitle: String)
+    }
+//    interface NewReadingFragmentListener {
+//        fun passBPReadingObj(bpReading: BPReading, fragmentTitle: String)
+//    }
 }

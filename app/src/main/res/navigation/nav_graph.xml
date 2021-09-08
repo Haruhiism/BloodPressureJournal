@@ -58,6 +58,11 @@
         android:name="com.pinkmoon.bloodpressurejournal.ui.fragments.StatisticsFragment"
         android:label="@string/fragment_statistics_title"
         tools:layout="@layout/fragment_statistics" />
+    <fragment
+        android:id="@+id/newReadingFragment"
+        android:name="com.pinkmoon.bloodpressurejournal.ui.fragments.new_reading.NewReadingFragment"
+        android:label="@string/fragment_reading_holder_title"
+        tools:layout="@layout/fragment_new_reading" />
 
 
 </navigation>

@@ -6,9 +6,9 @@ import java.text.DateFormat
 
 @Entity(tableName = "table_bp_reading")
 class BPReading(
-    var systolicValue: Int,
-    var diastolicValue: Int,
-    var pulseValue: Int,
+    var systolicValue: Int = 120,
+    var diastolicValue: Int = 80,
+    var pulseValue: Int = 72,
     var timeStamp: String = DateFormat.getDateTimeInstance().format(System.currentTimeMillis()),
     @PrimaryKey(autoGenerate = true) var pId: Int = 0
 ) {
