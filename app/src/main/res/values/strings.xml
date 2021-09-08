@@ -6,8 +6,11 @@
     <string name="fragment_daily_readings_title">Daily Readings</string>
     <string name="add_reading">Add Reading</string>
 
+    <string name="fragment_settings_dark_mode_toggle">Toggle dark mode</string>
+
     <string name="hint_systolic">Systolic Value…</string>
     <string name="button_save">Save</string>
+    <string name="button_save_all">Save all readings</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
 
     <string name="bottom_navigation_main_daily_readings">Daily Readings</string>
@@ -64,5 +67,8 @@
         <item>Today</item>
         <item>Custom range…</item>
     </string-array>
+
+    <!-- SharedPrefs Keys -->
+    <string name="saved_dark_mode_key">dark_mode_pref</string>
 
 </resources>

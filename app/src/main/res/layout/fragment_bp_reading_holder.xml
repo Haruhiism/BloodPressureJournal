@@ -32,7 +32,7 @@
             android:id="@+id/tab_tablayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorColor="@color/darkPumpkin"
+            app:tabIndicatorColor="@color/darkRed"
             app:tabIndicatorHeight="3dp"
             app:tabMode="fixed" />
     </com.google.android.material.appbar.AppBarLayout>

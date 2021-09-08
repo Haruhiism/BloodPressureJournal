@@ -12,8 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="16sp"
+        android:gravity="bottom|center"
         android:textAlignment="center"
-        android:textColor="@color/retro_red_orange"
+        android:textColor="@color/purple_700"
         android:text="@string/fragment_add_reading_systolic"/>
 
     <com.shawnlin.numberpicker.NumberPicker
@@ -25,7 +26,7 @@
         app:np_min="50"
         app:np_value="120"
         app:np_order="descending"
-        app:np_selectedTextColor="@color/retro_blue"
+        app:np_selectedTextColor="@color/purple_700"
         android:layout_weight="1"/>
 
     <TextView
@@ -33,8 +34,9 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="16sp"
+        android:gravity="bottom|center"
         android:textAlignment="center"
-        android:textColor="@color/retro_pink"
+        android:textColor="@color/fadedPurpleBackground"
         android:text="@string/fragment_add_reading_diastolic"/>
 
     <com.shawnlin.numberpicker.NumberPicker
@@ -46,7 +48,7 @@
         app:np_min="40"
         app:np_value="80"
         app:np_order="descending"
-        app:np_selectedTextColor="@color/retro_blue"
+        app:np_selectedTextColor="@color/fadedPurpleBackground"
         android:layout_weight="1"/>
 
     <TextView
@@ -55,6 +57,7 @@
         android:layout_weight="1"
         android:textSize="16sp"
         android:layout_marginBottom="4dp"
+        android:gravity="bottom|center"
         android:textAlignment="center"
         android:textColor="@color/retro_green"
         android:text="@string/fragment_add_reading_pulse"/>
@@ -68,7 +71,7 @@
         app:np_max="200"
         app:np_min="40"
         app:np_value="72"
-        app:np_selectedTextColor="@color/retro_blue"
+        app:np_selectedTextColor="@color/retro_green"
         android:layout_weight="1"/>
 
 </LinearLayout>

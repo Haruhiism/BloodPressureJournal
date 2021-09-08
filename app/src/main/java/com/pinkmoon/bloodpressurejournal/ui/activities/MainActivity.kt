@@ -1,6 +1,7 @@
 package com.pinkmoon.bloodpressurejournal.ui.activities
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
@@ -45,6 +47,8 @@ class MainActivity : AppCompatActivity(), SelectNumOfReadingsDialog.SelectNumOfR
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        checkDarkModePref()
 
         // Set up the toolbar
         var toolbar = findViewById<Toolbar>(R.id.tb_activity_main_toolbar)
@@ -120,6 +124,13 @@ class MainActivity : AppCompatActivity(), SelectNumOfReadingsDialog.SelectNumOfR
                 Toast.LENGTH_SHORT
             ).show()
         }
+    }
+
+    private fun checkDarkModePref(){
+        val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        val darkModePref = sharedPref.getBoolean(getString(R.string.saved_dark_mode_key), false)
+
+        if(darkModePref) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
     }
 
     override fun passUserReadingSelection(numOfReadings: Int) {

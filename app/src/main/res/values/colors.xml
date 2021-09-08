@@ -24,12 +24,14 @@
     <color name="darkPumpkin">#B14D1D</color>
     <color name="tables">#5B6073</color>
     <color name="passField">#DCDCDC</color>
-    <color name="cardBckgndDark">#2C2F35</color>
+    <color name="backgroundDark">#4A676E7E</color>
+    <color name="backgroundDarker">#2C2C2C</color>
     <color name="employeeBlunder">#816B6B</color>
 
     <color name="retro_pink">#e5c3c6</color>
     <color name="retro_green">#A5D6A7</color>
     <color name="retro_red_orange">#f96161</color>
+    <color name="retro_dark_red_orange">#A33F3F</color>
     <color name="retro_blue">#bcd2d0</color>
 
 

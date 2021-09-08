@@ -2,7 +2,6 @@ package com.pinkmoon.bloodpressurejournal.ui.fragments
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -10,6 +9,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.pinkmoon.bloodpressurejournal.R
+import com.pinkmoon.bloodpressurejournal.ui.fragments.new_reading.NewReadingFragment
 
 class BPReadingHolderFragment : Fragment(R.layout.fragment_bp_reading_holder) {
 
