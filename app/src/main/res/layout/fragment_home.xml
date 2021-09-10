@@ -7,17 +7,84 @@
     tools:context=".ui.fragments.HomeFragment">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_fragment_home_main_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Home fragment."
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/home_main_title"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="5dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:gravity="center" />
+
+    <com.github.mikephil.charting.charts.ScatterChart
+        android:id="@+id/sc_fragment_home_daily_readings"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_fragment_home_main_title"
+        app:layout_constraintBottom_toTopOf="@id/ll_fragment_home_title"
+        android:layout_marginTop="25dp" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_fragment_home_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/sc_fragment_home_daily_readings"
+        app:layout_constraintBottom_toTopOf="@id/rv_fragment_home_last_five_readings">
+
+        <TextView
+            android:id="@+id/tv_item_display_all_users_first_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".10"
+            android:textSize="14sp"
+            android:text="@string/home_rv_title_dia" />
+
+        <TextView
+            android:id="@+id/tv_item_display_all_users_last_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".10"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:text="@string/home_rv_title_sys" />
+
+        <TextView
+            android:id="@+id/tv_item_display_all_users_id_number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".10"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:text="@string/home_rv_title_pulse" />
+
+        <TextView
+            android:id="@+id/tv_item_rv_last_five_readings_time_stamp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".40"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:text="@string/home_rv_title_timestamp" />
+
+
+    </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_fragment_home_last_five_readings"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            tools:listitem="@layout/item_bp_readings"
+            android:padding="8dp"
+            android:layout_marginBottom="55dp"
+            app:layout_constraintTop_toBottomOf="@id/ll_fragment_home_title" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/fab_fragment_home_add_reading"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"

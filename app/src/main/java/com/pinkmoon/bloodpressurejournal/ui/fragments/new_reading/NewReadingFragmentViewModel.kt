@@ -1,7 +1,11 @@
 package com.pinkmoon.bloodpressurejournal.ui.fragments.new_reading
 
+import androidx.activity.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.pinkmoon.bloodpressurejournal.BloodPressureJournalApplication
+import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReadingViewModel
+import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReadingViewModelFactory
 
 class NewReadingFragmentViewModel : ViewModel() {
 

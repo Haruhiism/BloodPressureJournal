@@ -8,6 +8,11 @@ class BPReadingViewModel(private val repository: BPReadingRepository) : ViewMode
 
     val allBpReadings: LiveData<List<BPReading>> = repository.allReadings.asLiveData()
 
+    fun bpReadingsByDate(s: String, e: String): LiveData<List<BPReading>> =
+        repository.readingsByDateRange(s, e).asLiveData()
+
+    val lastFiveReadings: LiveData<List<BPReading>> = repository.lastFiveReadings.asLiveData()
+
     fun insert(bpReading: BPReading) = viewModelScope.launch {
         repository.insert(bpReading)
     }

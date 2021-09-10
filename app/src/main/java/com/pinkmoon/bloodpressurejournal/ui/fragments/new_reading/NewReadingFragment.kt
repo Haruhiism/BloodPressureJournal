@@ -41,29 +41,28 @@ class NewReadingFragment : Fragment(R.layout.fragment_new_reading) {
         super.onViewCreated(view, savedInstanceState)
 
         fragmentTitle = arguments?.getString("KEY") ?: "Could not get title."
-        setHasOptionsMenu(true)
         defineViews(view)
         defineObservers()
         setOnClickListeners()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_readings_options, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.save -> {
-                val snack = view?.let { Snackbar.make(it, "Saved.", Snackbar.LENGTH_SHORT) }
-                snack?.show()
-                true
-            }
-            else -> {
-                false
-            }
-        }
-    }
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        super.onCreateOptionsMenu(menu, inflater)
+//        inflater.inflate(R.menu.menu_readings_options, menu)
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return when (item.itemId) {
+//            R.id.save -> {
+//                val snack = view?.let { Snackbar.make(it, "Saved.", Snackbar.LENGTH_SHORT) }
+//                snack?.show()
+//                true
+//            }
+//            else -> {
+//                false
+//            }
+//        }
+//    }
 
     private fun defineViews(view: View) {
         newReadingFragmentViewModel = ViewModelProvider(this).get(NewReadingFragmentViewModel::class.java)

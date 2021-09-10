@@ -35,6 +35,9 @@
         <argument
             android:name="numberOfReadings"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_BPReadingHolderFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"

@@ -1,22 +1,37 @@
 package com.pinkmoon.bloodpressurejournal.ui.fragments
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
+import com.pinkmoon.bloodpressurejournal.BloodPressureJournalApplication
 import com.pinkmoon.bloodpressurejournal.R
-import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReading
+import com.pinkmoon.bloodpressurejournal.db.bp_reading.*
 import com.pinkmoon.bloodpressurejournal.ui.fragments.new_reading.NewReadingFragment
 
 class BPReadingHolderFragment : Fragment(R.layout.fragment_bp_reading_holder), NewReadingFragment.OnNewReadingFragmentListener {
 
     private val args: BPReadingHolderFragmentArgs by navArgs()
+
+    private var bpReadingMap = hashMapOf<String, BPReading>()
+
+    private val bpReadingViewModel: BPReadingViewModel by viewModels {
+        BPReadingViewModelFactory((requireActivity().application as BloodPressureJournalApplication).bpReadingRepository)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,8 +42,39 @@ class BPReadingHolderFragment : Fragment(R.layout.fragment_bp_reading_holder), N
         var tab_viewpager = view.findViewById<ViewPager>(R.id.tab_viewpager)
         var tab_tablayout = view.findViewById<TabLayout>(R.id.tab_tablayout)
 
+        setHasOptionsMenu(true)
+
         setupViewPager(tab_viewpager)
         tab_tablayout.setupWithViewPager(tab_viewpager)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_readings_options, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.save -> {
+                logBPReadingsToDB()
+//                val snack = view?.let {
+//                    Snackbar.make(it,
+//                    getString(R.string.write_to_db_success),
+//                    Snackbar.LENGTH_SHORT)
+//                }
+//                snack?.show()
+                Toast.makeText(
+                    context,
+                    getString(R.string.write_to_db_success),
+                    Toast.LENGTH_SHORT
+                ).show()
+                takeUserBackToMain()
+                true
+            }
+            else -> {
+                false
+            }
+        }
     }
 
     private fun setupViewPager(viewpager: ViewPager) {
@@ -47,8 +93,8 @@ class BPReadingHolderFragment : Fragment(R.layout.fragment_bp_reading_holder), N
     }
 
     class ViewPageAdapter : FragmentPagerAdapter {
-
         private var fragmentList1: ArrayList<Fragment> = ArrayList()
+
         private var fragmentTitleList1: ArrayList<String> = ArrayList()
 
         constructor(supportFragmentManager: FragmentManager)
@@ -82,7 +128,20 @@ class BPReadingHolderFragment : Fragment(R.layout.fragment_bp_reading_holder), N
         }
     }
 
+    private fun logBPReadingsToDB() {
+        for (reading in bpReadingMap) {
+            bpReadingViewModel.insert(reading.value)
+        }
+    }
+
+    private fun takeUserBackToMain() {
+        val action = BPReadingHolderFragmentDirections.actionBPReadingHolderFragmentToHomeFragment()
+        findNavController().navigate(action)
+    }
+
     override fun passBPReadingObj(bpReading: BPReading, fragmentTitle: String) {
+        bpReadingMap[fragmentTitle] = bpReading
+
         var snack = view?.let {
             Snackbar.make(
                 it,

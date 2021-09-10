@@ -17,20 +17,42 @@ class BPReadingListAdapter : ListAdapter<BPReading, BPReadingListAdapter.BPReadi
     override fun onBindViewHolder(holder: BPReadingViewHolder, position: Int) {
         val current = getItem(position)
 
-        holder.bind(current.systolicValue.toString())
+        holder.bindSystolicVal(current.systolicValue.toString())
+        holder.bindDiastolicVal(current.diastolicValue.toString())
+        holder.bindPulseVal(current.pulseValue.toString())
+        holder.bindTimestampVal(current.formatDatePretty(current.timeStamp))
     }
 
     class BPReadingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val bpReadingItemView: TextView = itemView.findViewById(R.id.textView)
+        private val bpReadingSystolicVal: TextView = itemView.findViewById(R.id.tv_item_bp_readings_systolic)
+        private val bpReadingDiastolicVal: TextView = itemView.findViewById(R.id.tv_item_bp_readings_diastolic)
+        private val bpReadingsPulseVal: TextView = itemView.findViewById(R.id.tv_item_bp_readings_pulse)
+        private val bpReadingsTimestamp: TextView = itemView.findViewById(R.id.tv_item_bp_readings_timestamp)
 
-        fun bind(text: String?) {
-            bpReadingItemView.text = text
+        fun bindSystolicVal(text: String?) {
+            bpReadingSystolicVal.text = text
+        }
+
+        fun bindDiastolicVal(text: String?) {
+            bpReadingDiastolicVal.text = text
+        }
+
+        fun bindPulseVal(text: String?) {
+            bpReadingsPulseVal.text = text
+        }
+
+        fun bindTimestampVal(text: String?) {
+            bpReadingsTimestamp.text = text
         }
 
         companion object {
             fun create(parent: ViewGroup) : BPReadingViewHolder {
                 val view: View = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.recyclerview_item, parent, false)
+                    .inflate(R.layout.item_bp_readings, parent, false)
+
+                view.setOnClickListener {
+
+                }
                 return BPReadingViewHolder(view)
             }
         }
