@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.charts.ScatterChart
@@ -16,6 +17,7 @@ import com.github.mikephil.charting.data.ScatterDataSet
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.pinkmoon.bloodpressurejournal.BloodPressureJournalApplication
 import com.pinkmoon.bloodpressurejournal.R
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.*
@@ -28,6 +30,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             (requireActivity().application as BloodPressureJournalApplication).bpReadingRepository
         )
     }
+
+    private val args: HomeFragmentArgs by navArgs()
 
     private lateinit var bpReadingsByDate: List<BPReading>
     private var bpReadingsAdapter = BPReadingListAdapter()
@@ -43,6 +47,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         defineViews()
         defineObservers()
         setListeners()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(args.readingsAddedStatus){
+            val snack = view?.let {
+                Snackbar.make(
+                    it,
+                    R.string.write_to_db_success,
+                    Snackbar.LENGTH_SHORT
+                )
+            }
+            snack?.show()
+        }
     }
 
     private fun defineViews() {

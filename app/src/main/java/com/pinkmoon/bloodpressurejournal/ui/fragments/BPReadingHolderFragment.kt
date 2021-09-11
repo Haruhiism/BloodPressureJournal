@@ -23,7 +23,8 @@ import com.pinkmoon.bloodpressurejournal.R
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.*
 import com.pinkmoon.bloodpressurejournal.ui.fragments.new_reading.NewReadingFragment
 
-class BPReadingHolderFragment : Fragment(R.layout.fragment_bp_reading_holder), NewReadingFragment.OnNewReadingFragmentListener {
+class BPReadingHolderFragment : Fragment(R.layout.fragment_bp_reading_holder),
+    NewReadingFragment.OnNewReadingFragmentListener {
 
     private val args: BPReadingHolderFragmentArgs by navArgs()
 
@@ -57,17 +58,6 @@ class BPReadingHolderFragment : Fragment(R.layout.fragment_bp_reading_holder), N
         return when (item.itemId) {
             R.id.save -> {
                 logBPReadingsToDB()
-//                val snack = view?.let {
-//                    Snackbar.make(it,
-//                    getString(R.string.write_to_db_success),
-//                    Snackbar.LENGTH_SHORT)
-//                }
-//                snack?.show()
-                Toast.makeText(
-                    context,
-                    getString(R.string.write_to_db_success),
-                    Toast.LENGTH_SHORT
-                ).show()
                 takeUserBackToMain()
                 true
             }
@@ -129,32 +119,24 @@ class BPReadingHolderFragment : Fragment(R.layout.fragment_bp_reading_holder), N
     }
 
     private fun logBPReadingsToDB() {
-        for (reading in bpReadingMap) {
-            bpReadingViewModel.insert(reading.value)
+        if (bpReadingMap.isNotEmpty()) {
+            for (reading in bpReadingMap) {
+                bpReadingViewModel.insert(reading.value)
+            }
+        } else {
+            bpReadingViewModel.insert(BPReading()) // insert a single default reading
         }
     }
 
     private fun takeUserBackToMain() {
-        val action = BPReadingHolderFragmentDirections.actionBPReadingHolderFragmentToHomeFragment()
+        val action = BPReadingHolderFragmentDirections
+            .actionBPReadingHolderFragmentToHomeFragment(true)
         findNavController().navigate(action)
     }
 
     override fun passBPReadingObj(bpReading: BPReading, fragmentTitle: String) {
         bpReadingMap[fragmentTitle] = bpReading
 
-        var snack = view?.let {
-            Snackbar.make(
-                it,
-                "Systolic: ${bpReading.systolicValue}, " +
-                        "Diastolic: ${bpReading.diastolicValue}, " +
-                        "Pulse: ${bpReading.pulseValue} " +
-                        "from $fragmentTitle",
-                Snackbar.LENGTH_LONG)
-        }
-        snack?.show()
-    }
-
-//    override fun passBPReadingObj(bpReading: BPReading, fragmentTitle: String) {
 //        var snack = view?.let {
 //            Snackbar.make(
 //                it,
@@ -165,5 +147,5 @@ class BPReadingHolderFragment : Fragment(R.layout.fragment_bp_reading_holder), N
 //                Snackbar.LENGTH_LONG)
 //        }
 //        snack?.show()
-//    }
+    }
 }

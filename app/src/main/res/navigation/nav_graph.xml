@@ -13,6 +13,10 @@
         <action
             android:id="@+id/action_homeFragment_to_selectNumOfReadingsDialog"
             app:destination="@id/selectNumOfReadingsDialog" />
+        <argument
+            android:name="readingsAddedStatus"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
     <dialog
         android:id="@+id/selectNumOfReadingsDialog"

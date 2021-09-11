@@ -1,19 +1,13 @@
 package com.pinkmoon.bloodpressurejournal.ui.fragments.new_reading
 
-import android.content.Context
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.snackbar.Snackbar
 import com.pinkmoon.bloodpressurejournal.R
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReading
 import com.shawnlin.numberpicker.NumberPicker
-import java.lang.ClassCastException
 
 
 class NewReadingFragment : Fragment(R.layout.fragment_new_reading) {
@@ -25,13 +19,11 @@ class NewReadingFragment : Fragment(R.layout.fragment_new_reading) {
 
     // local vars
     private lateinit var newReadingFragmentViewModel: NewReadingFragmentViewModel
-    private var selectedSysVal: Int = 0
-    private var selectedDiasVal: Int = 0
-    private var selectedPulseVal: Int = 0
+    private var selectedSysVal: Int = 120
+    private var selectedDiasVal: Int = 80
+    private var selectedPulseVal: Int = 72
 
     private var bpReadingObj = BPReading()
-
-    // lateinit var mListener: NewReadingFragmentListener
 
     lateinit var callback: OnNewReadingFragmentListener
 
@@ -44,25 +36,9 @@ class NewReadingFragment : Fragment(R.layout.fragment_new_reading) {
         defineViews(view)
         defineObservers()
         setOnClickListeners()
+        // pass back a default BPReading object in case the user leaves some values untouched
+        callback.passBPReadingObj(bpReadingObj, fragmentTitle)
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        super.onCreateOptionsMenu(menu, inflater)
-//        inflater.inflate(R.menu.menu_readings_options, menu)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return when (item.itemId) {
-//            R.id.save -> {
-//                val snack = view?.let { Snackbar.make(it, "Saved.", Snackbar.LENGTH_SHORT) }
-//                snack?.show()
-//                true
-//            }
-//            else -> {
-//                false
-//            }
-//        }
-//    }
 
     private fun defineViews(view: View) {
         newReadingFragmentViewModel = ViewModelProvider(this).get(NewReadingFragmentViewModel::class.java)
@@ -101,6 +77,7 @@ class NewReadingFragment : Fragment(R.layout.fragment_new_reading) {
     }
 
     private fun setOnClickListeners() {
+
         npSystolicVal?.setOnValueChangedListener { _, _, newVal ->
             setSelectedSystolicVal(newVal)
             newReadingFragmentViewModel.currentSystolicValue.value = newVal
@@ -135,15 +112,6 @@ class NewReadingFragment : Fragment(R.layout.fragment_new_reading) {
         bpReadingObj.pulseValue = pulseVal
     }
 
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-//        try {
-//            mListener = context as NewReadingFragmentListener
-//        } catch (e: ClassCastException) {
-//            throw ClassCastException("$context must implement NewReadingFragmentListener.")
-//        }
-//    }
-
     fun setOnNewReadingFragmentListener(callback: OnNewReadingFragmentListener) {
         this.callback = callback
     }
@@ -151,7 +119,4 @@ class NewReadingFragment : Fragment(R.layout.fragment_new_reading) {
     interface OnNewReadingFragmentListener {
         fun passBPReadingObj(bpReading: BPReading, fragmentTitle: String)
     }
-//    interface NewReadingFragmentListener {
-//        fun passBPReadingObj(bpReading: BPReading, fragmentTitle: String)
-//    }
 }
