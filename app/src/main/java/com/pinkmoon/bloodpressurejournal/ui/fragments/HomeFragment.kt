@@ -1,17 +1,20 @@
 package com.pinkmoon.bloodpressurejournal.ui.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.charts.ScatterChart
-import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.ScatterData
 import com.github.mikephil.charting.data.ScatterDataSet
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.pinkmoon.bloodpressurejournal.BloodPressureJournalApplication
 import com.pinkmoon.bloodpressurejournal.R
@@ -40,7 +43,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         defineViews()
         defineObservers()
         setListeners()
-        //bindDBDataToViews()
     }
 
     private fun defineViews() {
@@ -50,6 +52,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         // general settings for the scatter chart styling
         scDailyReadings.description.isEnabled = false
+        scDailyReadings.setPinchZoom(false)
+        scDailyReadings.setScaleEnabled(false)
+        scDailyReadings.axisLeft.setDrawGridLines(false)
+        scDailyReadings.axisRight.setDrawGridLines(false)
+        scDailyReadings.xAxis.setDrawGridLines(false)
+
 
         rvLastFiveReadings.adapter = bpReadingsAdapter
         rvLastFiveReadings.layoutManager = LinearLayoutManager(context)
@@ -61,7 +69,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 bpReading ->
             bpReading.let {
                 bpReadingsByDate = it
-                bindDBDataToViews()
+                if(it.isNotEmpty()) bindDBDataToScatterChart()
             }
         })
 
@@ -77,23 +85,64 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             val action = HomeFragmentDirections.actionHomeFragmentToSelectNumOfReadingsDialog()
             findNavController().navigate(action)
         }
+
+        scDailyReadings.setOnChartValueSelectedListener(object: OnChartValueSelectedListener {
+            override fun onValueSelected(e: Entry?, h: Highlight?) {
+                displayToastWithEntryDetails(e)
+            }
+
+            override fun onNothingSelected() {}
+        })
     }
 
-    private fun bindDBDataToViews() {
-        // Scatter Chart
+    private fun displayToastWithEntryDetails(e: Entry?) {
+        Toast.makeText(
+            context,
+            "Systolic: ${e?.y?.toInt()} Diastolic: ${e?.x?.toInt()}",
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private fun bindDBDataToScatterChart() {
+        // Scatter Chart for daily readings
         var bpReadingEntries = arrayListOf<Entry>()
         for (bpReading in bpReadingsByDate) {
             bpReadingEntries.add(Entry(
                 bpReading.diastolicValue.toFloat(),
-                bpReading.systolicValue.toFloat()
+                bpReading.systolicValue.toFloat(),
+                resources.getDrawable(R.drawable.ic_heart_filled_red)
             ))
         }
+        bpReadingEntries.sortBy { it.x } //  we need to sort by the x-axis value to prevent crashes
 
-        var bpReadingDataSet = ScatterDataSet(bpReadingEntries, "BP Reading")
+        var bpReadingDataSet = ScatterDataSet(bpReadingEntries, "Single BP Reading")
+        bpReadingDataSet.setDrawIcons(true)
+        bpReadingDataSet.valueTextSize = 8f
         bpReadingDataSet.color = resources.getColor(R.color.bloodyRed)
 
-        var bpReadingScatterDataSet = ScatterData(bpReadingDataSet)
-        scDailyReadings.data = bpReadingScatterDataSet
+
+        // Scatter Chart for daily reading averages
+        var bpReadingsAvgList = bpReadingsByDate.get(0).filterAverages(bpReadingsByDate)
+        var bpReadingAvgEntriesList = arrayListOf<Entry>()
+        for (bpReadingAvg in bpReadingsAvgList) {
+            bpReadingAvgEntriesList.add(Entry(
+                bpReadingAvg.diastolicValue.toFloat(),
+                bpReadingAvg.systolicValue.toFloat(),
+                resources.getDrawable(R.drawable.ic_avg_indicator)
+            ))
+        }
+        bpReadingAvgEntriesList.sortBy { it.x } //  we need to sort by the x-axis value to prevent crashes
+
+
+        var bpReadingAvgDataSet = ScatterDataSet(bpReadingAvgEntriesList, "Average BP Reading")
+        bpReadingAvgDataSet.setDrawIcons(true)
+        bpReadingAvgDataSet.valueTextSize = 8f
+        bpReadingAvgDataSet.color = resources.getColor(R.color.fadedPurpleBackground)
+
+        var bpReadingAvgScatterDataSet = ScatterData(bpReadingAvgDataSet, bpReadingDataSet)
+        scDailyReadings.data = bpReadingAvgScatterDataSet
+
         scDailyReadings.invalidate()
         scDailyReadings.notifyDataSetChanged()
     }

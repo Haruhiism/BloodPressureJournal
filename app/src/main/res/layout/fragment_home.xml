@@ -22,8 +22,17 @@
         android:layout_height="400dp"
         app:layout_constraintTop_toBottomOf="@id/tv_fragment_home_main_title"
         app:layout_constraintBottom_toTopOf="@id/ll_fragment_home_title"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"/>
 
+    <TextView
+        android:id="@+id/tv_fragment_home_rv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/home_main_rv_title"
+        android:layout_marginTop="5dp"
+        app:layout_constraintBottom_toTopOf="@id/ll_fragment_home_title"
+        android:gravity="center" />
 
     <LinearLayout
         android:id="@+id/ll_fragment_home_title"

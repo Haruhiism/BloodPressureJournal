@@ -12,7 +12,7 @@
     <string name="home_rv_title_dia">Diastolic</string>
     <string name="home_rv_title_pulse">Pulse</string>
     <string name="home_rv_title_timestamp">Date</string>
-
+    <string name="home_main_rv_title">Last five readings</string>
 
     <string name="fragment_settings_dark_mode_toggle">Toggle dark mode</string>
 
