@@ -26,6 +26,7 @@ import com.pinkmoon.bloodpressurejournal.ui.fragments.new_reading.NewReadingFrag
 class BPReadingHolderFragment : Fragment(R.layout.fragment_bp_reading_holder),
     NewReadingFragment.OnNewReadingFragmentListener {
 
+    // local vars
     private val args: BPReadingHolderFragmentArgs by navArgs()
 
     private var bpReadingMap = hashMapOf<String, BPReading>()
@@ -58,7 +59,6 @@ class BPReadingHolderFragment : Fragment(R.layout.fragment_bp_reading_holder),
         return when (item.itemId) {
             R.id.save -> {
                 logBPReadingsToDB()
-                takeUserBackToMain()
                 true
             }
             else -> {
@@ -122,15 +122,18 @@ class BPReadingHolderFragment : Fragment(R.layout.fragment_bp_reading_holder),
         if (bpReadingMap.isNotEmpty()) {
             for (reading in bpReadingMap) {
                 bpReadingViewModel.insert(reading.value)
+                takeUserBackToMain(true)
             }
         } else {
             bpReadingViewModel.insert(BPReading()) // insert a single default reading
+            takeUserBackToMain(true)
         }
+        takeUserBackToMain(false)
     }
 
-    private fun takeUserBackToMain() {
+    private fun takeUserBackToMain(readingsAddedStatus: Boolean) {
         val action = BPReadingHolderFragmentDirections
-            .actionBPReadingHolderFragmentToHomeFragment(true)
+            .actionBPReadingHolderFragmentToHomeFragment(readingsAddedStatus)
         findNavController().navigate(action)
     }
 
