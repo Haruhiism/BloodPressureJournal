@@ -19,6 +19,7 @@
     <string name="hint_systolic">Systolic Value…</string>
     <string name="button_save">Save</string>
     <string name="button_save_all">Save all readings</string>
+    <string name="button_export_data">Export data</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
 
     <string name="bottom_navigation_main_daily_readings">Daily Readings</string>
@@ -81,5 +82,12 @@
 
     <!-- SharedPrefs Keys -->
     <string name="saved_dark_mode_key">dark_mode_pref</string>
+
+    <!-- Fragment statistics -->
+    <string name="frag_stats_title_ideal">Ideal</string>
+    <string name="frag_stats_title_elevated">Elevated</string>
+    <string name="frag_stats_title_hyp_stage_1">Hyp Stage 1</string>
+    <string name="frag_stats_title_hyp_stage_2">Hyp Stage 2</string>
+    <string name="frag_stats_title_hyp_crisis">Hyp Crisis</string>
 
 </resources>

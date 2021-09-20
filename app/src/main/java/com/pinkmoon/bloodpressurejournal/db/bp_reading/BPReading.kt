@@ -6,6 +6,7 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 private const val MINIMUM_AVG_COMPUTATION_SIZE = 3
 
@@ -25,7 +26,7 @@ class BPReading(
      * @return a BPReading object containing the averages as its
      *  properties, with a timestamp matching the consecutive readings.
      */
-    fun calculateAverage(vararg bpReadings: BPReading) : BPReading {
+    private fun calculateAverage(vararg bpReadings: BPReading) : BPReading {
         var systolicAvg = 0
         var diastolicAvg = 0
         var pulseAvg = 0
@@ -88,6 +89,40 @@ class BPReading(
         val prettyF = DateTimeFormatter.ofPattern("EEEE MMM d, yyyy HH:mm:ss")
         return prettyF.format(aLDT)
     }
+
+    /**
+     * Will calculate the range of the week today's date falls upon.
+     * For example, if today is Wednesday 15th of September 2021,
+     * the week range would be from Monday 2021-09-13 to Sunday 2021-09-19.
+     * @return a list with the first and second items within it being string
+     * representations of the start and end dates of the current week.
+     */
+    fun getWeekRange(): MutableList<String> {
+        val weekRange = mutableListOf<String>()
+
+        val dayNumOfWeek: DateFormat = SimpleDateFormat("u")
+        val currentDayNumOfMonth: DateFormat = SimpleDateFormat("d")
+        // knowing that Monday = 1 and Sunday = 7
+        val daysPastMonday = dayNumOfWeek.format(Calendar.getInstance().time).toInt() - 1
+        val daysUntilSunday = 7 - dayNumOfWeek.format(Calendar.getInstance().time).toInt()
+
+        // calculate the day of the month the week starts and ends in
+        val weekStartDayOfMonth = currentDayNumOfMonth
+            .format(Calendar.getInstance().time).toInt() - daysPastMonday
+        val weekEndDayOfMonth = currentDayNumOfMonth
+            .format(Calendar.getInstance().time).toInt() + daysUntilSunday
+
+        // get a string instance of the date, split and manipulate the string
+        // according to the calculated start and end dates above
+        val today = getDateEndToday.split("-")
+        val weekStartDate = today[0] + "-" + today[1] + "-" + weekStartDayOfMonth + " 00:00:00"
+        val weekEndDate = today[0] + "-" + today[1] + "-" + weekEndDayOfMonth + " 23:59:59"
+
+        weekRange.add(weekStartDate)
+        weekRange.add(weekEndDate)
+
+        return weekRange
+    }
 }
 
 private fun getDateTimeStamp(): String {
@@ -95,9 +130,14 @@ private fun getDateTimeStamp(): String {
     return df.format(System.currentTimeMillis())
 }
 
-val getDateStartToday: String by lazy {
-    val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-    df.format(System.currentTimeMillis())
+val getDateToday: String by lazy {
+    val df = SimpleDateFormat("yyyy-MM-dd")
+    df.format(Calendar.getInstance().time)
+}
+
+val getDateTomorrow: String by lazy {
+    val df = SimpleDateFormat("yyyy-MM-dd")
+    df.format(System.currentTimeMillis() + 86400000)
 }
 
 val getDateEndToday: String by lazy {

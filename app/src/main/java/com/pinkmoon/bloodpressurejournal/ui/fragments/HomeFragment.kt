@@ -21,6 +21,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.pinkmoon.bloodpressurejournal.BloodPressureJournalApplication
 import com.pinkmoon.bloodpressurejournal.R
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
@@ -83,13 +88,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun defineObservers() {
         // observers
-        bpReadingViewModel.bpReadingsByDate(getDateStartToday, getDateEndToday).observe(viewLifecycleOwner, {
+        bpReadingViewModel.bpReadingsByDate("$getDateToday 00:00:00", "$getDateToday 23:59:59")
+            .observe(viewLifecycleOwner, {
                 bpReading ->
-            bpReading.let {
-                bpReadingsByDate = it
-                if(it.isNotEmpty()) bindDBDataToScatterChart()
-            }
-        })
+                bpReading.let {
+                    bpReadingsByDate = it
+                    if(it.isNotEmpty()) bindDBDataToScatterChart()
+                }
+            })
+
 
         bpReadingViewModel.lastFiveReadings.observe(viewLifecycleOwner, { bpReadings ->
             bpReadings.let {
