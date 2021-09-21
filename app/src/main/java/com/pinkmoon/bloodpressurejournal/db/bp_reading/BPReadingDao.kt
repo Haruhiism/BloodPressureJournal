@@ -16,7 +16,10 @@ interface BPReadingDao {
     fun getAllReadings(): Flow<List<BPReading>>
 
     //SELECT * FROM table_bp_reading WHERE timeStamp BETWEEN :startDate + '%' AND :endDate + '%'
-    @Query("SELECT * FROM table_bp_reading WHERE DATE(timeStamp) BETWEEN :startDate AND :endDate")
+    //@Query("SELECT * FROM table_bp_reading WHERE DATE(timeStamp) BETWEEN :startDate AND :endDate")
+    //@Query("SELECT * FROM table_bp_reading WHERE strftime('%Y-%m-%d',timeStamp) >= :startDate AND strftime('%Y-%m-%d',timeStamp) <= :endDate;")
+    @Query("SELECT * FROM table_bp_reading WHERE timeStamp BETWEEN :startDate AND :endDate")
+    // fun getReadingsByDateRange(startDate: String, endDate: String): Flow<List<BPReading>>
     fun getReadingsByDateRange(startDate: String, endDate: String): Flow<List<BPReading>>
 
     @Query("SELECT * FROM table_bp_reading ORDER BY timeStamp DESC LIMIT 5")

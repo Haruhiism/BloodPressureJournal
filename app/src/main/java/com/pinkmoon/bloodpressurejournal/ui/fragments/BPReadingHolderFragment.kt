@@ -122,13 +122,11 @@ class BPReadingHolderFragment : Fragment(R.layout.fragment_bp_reading_holder),
         if (bpReadingMap.isNotEmpty()) {
             for (reading in bpReadingMap) {
                 bpReadingViewModel.insert(reading.value)
-                takeUserBackToMain(true)
             }
-        } else {
-            bpReadingViewModel.insert(BPReading()) // insert a single default reading
             takeUserBackToMain(true)
+        } else {
+            takeUserBackToMain(false)
         }
-        takeUserBackToMain(false)
     }
 
     private fun takeUserBackToMain(readingsAddedStatus: Boolean) {

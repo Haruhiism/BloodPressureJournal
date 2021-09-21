@@ -19,6 +19,7 @@
     <string name="hint_systolic">Systolic Value…</string>
     <string name="button_save">Save</string>
     <string name="button_save_all">Save all readings</string>
+    <string name="button_export_data">Export data</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
 
     <string name="bottom_navigation_main_daily_readings">Daily Readings</string>
@@ -59,11 +60,18 @@
     <string name="menu_add_reading_discard">Discard</string>
 
     <!-- dialog BP Ranges info strings-->
+    <!-- Source: https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings-->
     <string name="dialog_bp_ranges_info_normal_title">Ideal/Normal</string>
     <string name="dialog_bp_ranges_info_elevated_title">Elevated</string>
     <string name="dialog_bp_ranges_info_hyp_stage_1_title">Hypertension Stage 1</string>
     <string name="dialog_bp_ranges_info_hyp_stage_2_title">Hypertension Stage 2</string>
     <string name="dialog_bp_ranges_info_hyp_crisis_title">Hypertensive crisis</string>
+
+    <string name="bp_ranges_info_normal_val">120/80</string>
+    <string name="bp_ranges_info_elevated_val">129/80</string>
+    <string name="bp_ranges_info_hyp_stage_1_val">139/89</string>
+    <string name="bp_ranges_info_hyp_stage_2_val">140/90</string>
+    <string name="bp_ranges_info_hyp_crisis_val">180/120</string>
 
     <string name="dialog_bp_ranges_info_normal">Blood pressure numbers of less than 120/80 mm Hg are considered within the normal range. \nIf your results fall into this category, stick with heart-healthy habits like following a balanced diet and getting regular exercise.</string>
     <string name="dialog_bp_ranges_info_elevated">Elevated blood pressure is when readings consistently range from 120–129 systolic and less than 80 mm Hg diastolic. \nPeople with elevated blood pressure are likely to develop high blood pressure unless steps are taken to control the condition.</string>
@@ -81,5 +89,12 @@
 
     <!-- SharedPrefs Keys -->
     <string name="saved_dark_mode_key">dark_mode_pref</string>
+
+    <!-- Fragment statistics -->
+    <string name="frag_stats_title_ideal">Ideal</string>
+    <string name="frag_stats_title_elevated">Elevated</string>
+    <string name="frag_stats_title_hyp_stage_1">Hyp Stage 1</string>
+    <string name="frag_stats_title_hyp_stage_2">Hyp Stage 2</string>
+    <string name="frag_stats_title_hyp_crisis">Hyp Crisis</string>
 
 </resources>

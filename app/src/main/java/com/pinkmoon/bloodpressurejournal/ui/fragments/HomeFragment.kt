@@ -83,13 +83,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun defineObservers() {
         // observers
-        bpReadingViewModel.bpReadingsByDate(getDateStartToday, getDateEndToday).observe(viewLifecycleOwner, {
+        bpReadingViewModel.bpReadingsByDate("${getDateToday()} $DAY_TIME_START",
+            "${getDateToday()} $DAY_TIME_END")
+            .observe(viewLifecycleOwner, {
                 bpReading ->
-            bpReading.let {
-                bpReadingsByDate = it
-                if(it.isNotEmpty()) bindDBDataToScatterChart()
-            }
-        })
+                bpReading.let {
+                    bpReadingsByDate = it
+                    if(it.isNotEmpty()) bindDBDataToScatterChart()
+                }
+            })
+
 
         bpReadingViewModel.lastFiveReadings.observe(viewLifecycleOwner, { bpReadings ->
             bpReadings.let {

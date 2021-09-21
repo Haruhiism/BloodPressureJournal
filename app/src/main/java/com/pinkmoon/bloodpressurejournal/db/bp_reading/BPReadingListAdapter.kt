@@ -14,6 +14,7 @@ class BPReadingListAdapter : ListAdapter<BPReading, BPReadingListAdapter.BPReadi
         return BPReadingViewHolder.create(parent)
     }
 
+    // TODO: Pick up here: color code each view based on its range
     override fun onBindViewHolder(holder: BPReadingViewHolder, position: Int) {
         val current = getItem(position)
 
