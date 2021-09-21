@@ -6,14 +6,18 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.pinkmoon.bloodpressurejournal.BloodPressureJournalApplication
 import com.pinkmoon.bloodpressurejournal.R
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
 
@@ -37,6 +41,20 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
 
     private lateinit var startDate: String
     private lateinit var endDate: String
+
+    // SOURCE: https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings
+    val BP_RANGES_MAP = hashMapOf(
+        (context?.getString(R.string.dialog_bp_ranges_info_normal_title) ?: "Ideal/Normal")
+                to (context?.getString(R.string.bp_ranges_info_normal_val) ?: "120/80"),
+        (context?.getString(R.string.dialog_bp_ranges_info_elevated_title) ?: "Elevated")
+                to (context?.getString(R.string.bp_ranges_info_elevated_val) ?: "129/80"),
+        (context?.getString(R.string.dialog_bp_ranges_info_hyp_stage_1_title) ?: "Hypertension Stage 1")
+                to (context?.getString(R.string.bp_ranges_info_hyp_stage_1_val) ?: "139/89"),
+        (context?.getString(R.string.dialog_bp_ranges_info_hyp_stage_2_title) ?: "Hypertension Stage 2")
+                to (context?.getString(R.string.bp_ranges_info_hyp_stage_2_val) ?: "140/90"),
+        (context?.getString(R.string.dialog_bp_ranges_info_hyp_crisis_title) ?: "Hypertensive crisis")
+                to (context?.getString(R.string.bp_ranges_info_hyp_crisis_val) ?: "180/120")
+    )
 
     private val bpReadingViewModel: BPReadingViewModel by viewModels {
         BPReadingViewModelFactory(
@@ -132,10 +150,10 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
                         // Do nothing
                     }
                     1 -> {
-                        displayDataRange(BPReading().getWeekRange())
+                        displayDataRange(getWeekRange())
                     }
                     2 -> {
-                        displayDataToday(getDateToday)
+                        displayDataToday(getDateToday())
                     }
                     3 -> {
                         callMDTPDialog()
@@ -154,11 +172,16 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
     }
 
     private fun displayDataToday(today: String) {
-       // bpReadingViewModel.
+       bpReadingViewModel.bpReadingsByDate("$today $DAY_TIME_START", "$today $DAY_TIME_END")
+           .observe(viewLifecycleOwner, { bpReadings ->
+               bpReadings.let {
+                   bpReadingAdapter.submitList(bpReadings)
+               }
+           })
     }
 
     private fun displayDataRange(weekRangeList: MutableList<String>) {
-        val v = getDateTomorrow
+        //val v = getDateTomorrow
         bpReadingViewModel.bpReadingsByDate(weekRangeList[0], weekRangeList[1])
             .observe(viewLifecycleOwner, { bpReadings ->
                 bpReadings.let {
@@ -168,6 +191,30 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
     }
 
     private fun callMDTPDialog() {
+        val df = SimpleDateFormat("yyyy-MM-dd")
+
+        // setTheme allows us to make this dialog like, instead of full-screen
+        var builder = MaterialDatePicker.Builder.dateRangePicker()
+            .setTheme(R.style.ThemeOverlay_MaterialComponents_MaterialCalendar)
+
+        // set default date
+        val now = Calendar.getInstance()
+        builder.setSelection(Pair(now.timeInMillis, now.timeInMillis))
+
+        // create and call the build method
+        val picker = builder.build()
+        picker.show(activity?.supportFragmentManager!!, picker.toString())
+
+        // set listeners
+        picker.addOnPositiveButtonClickListener {
+            val listOfRanges = mutableListOf<String>()
+            // DAY_IN_MILLIS is necessary since MTDP seems to like to subtract an extra day to
+            // the date range selection: we add an extra day for that reason
+            listOfRanges.add("${df.format(it.first + DAY_IN_MILLIS)} $DAY_TIME_START")
+            listOfRanges.add("${df.format(it.second + DAY_IN_MILLIS)} $DAY_TIME_END")
+
+            displayDataRange(listOfRanges)
+        }
 
     }
 }
