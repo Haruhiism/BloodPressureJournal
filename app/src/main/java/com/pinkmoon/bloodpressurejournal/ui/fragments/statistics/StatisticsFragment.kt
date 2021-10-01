@@ -14,6 +14,13 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.PercentFormatter
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.pinkmoon.bloodpressurejournal.*
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.*
@@ -34,6 +41,8 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
     private lateinit var tvTitleHypCrisis: TextView
 
     private lateinit var rvBPReadings: RecyclerView
+
+    private lateinit var pcReadingSpread: PieChart
 
     // local var
     private lateinit var statisticsFragmentViewModel: StatisticsFragmentViewModel
@@ -114,6 +123,9 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
         rvBPReadings = view.findViewById(R.id.rv_fragment_statistics_readings)
         rvBPReadings.adapter = bpReadingAdapter
         rvBPReadings.layoutManager = LinearLayoutManager(context)
+
+        pcReadingSpread = view.findViewById(R.id.pc_fragment_statistics_reading_spread)
+        customizePCAppearance()
 
         statisticsFragmentViewModel = ViewModelProvider(this)
             .get(StatisticsFragmentViewModel::class.java)
@@ -206,6 +218,7 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
            .observe(viewLifecycleOwner, { bpReadings ->
                bpReadings.let {
                    bpReadingAdapter.submitList(bpReadings)
+                   if(it.isNotEmpty()) bindDBDataToPieChart(bpReadings)
                }
            })
     }
@@ -216,6 +229,7 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
             .observe(viewLifecycleOwner, { bpReadings ->
                 bpReadings.let {
                     bpReadingAdapter.submitList(bpReadings)
+                    if(it.isNotEmpty()) bindDBDataToPieChart(bpReadings)
                 }
             })
     }
@@ -245,6 +259,49 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
 
             displayDataRange(listOfRanges)
         }
+    }
 
+    private fun bindDBDataToPieChart(bpReadingList: List<BPReading>) {
+        val titleFreqMap = context?.let { bpReadingList[0].makePieChartMap(bpReadingList, it) }
+        val bpReadingEntries = arrayListOf<PieEntry>()
+        titleFreqMap?.forEach { (k, v) ->
+            if (v != 0) { // we don't want to add entries that have freq of 0 to avoid clutter
+                bpReadingEntries.add(
+                    PieEntry(v.toFloat(), k)
+                )
+            }
+        }
+        val colorArr = arrayOf(resources.getColor(R.color.pistachioGreen),
+                        resources.getColor(R.color.retro_yellow),
+                        resources.getColor(R.color.pumpkin),
+                        resources.getColor(R.color.darkPumpkin),
+                        resources.getColor(R.color.bloodyRed))
+
+        val pieDataSet = PieDataSet(bpReadingEntries, "")
+        pieDataSet.colors = colorArr.toMutableList()
+
+        val pieData = PieData(pieDataSet)
+        pieData.setDrawValues(true)
+        pieData.setValueTextSize(12f)
+        pieData.setValueFormatter(PercentFormatter(pcReadingSpread)) // formats to percentages
+
+        pcReadingSpread.data = pieData
+        pcReadingSpread.invalidate()
+    }
+
+    private fun customizePCAppearance() {
+        // pie chart customizations
+        pcReadingSpread.setUsePercentValues(true)
+        pcReadingSpread.setDrawSlicesUnderHole(true)
+        pcReadingSpread.setEntryLabelTextSize(12f)
+        pcReadingSpread.centerText = getString(R.string.frag_stats_reading_overview)
+        pcReadingSpread.description.isEnabled = false
+        pcReadingSpread.setNoDataText(getString(R.string.frag_stats_no_data_pie_chart))
+
+        // legend customization
+        val pcLegend = pcReadingSpread.legend
+        pcLegend.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
+        pcLegend.setDrawInside(false)
+        pcLegend.isEnabled = true
     }
 }

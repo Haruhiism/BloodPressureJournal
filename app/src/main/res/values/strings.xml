@@ -97,4 +97,7 @@
     <string name="frag_stats_title_hyp_stage_2">Hyp Stage 2</string>
     <string name="frag_stats_title_hyp_crisis">Hyp Crisis</string>
 
+    <string name="frag_stats_no_data_pie_chart">Select a range to display.</string>
+    <string name="frag_stats_reading_overview">BP Readings Overview</string>
+
 </resources>
