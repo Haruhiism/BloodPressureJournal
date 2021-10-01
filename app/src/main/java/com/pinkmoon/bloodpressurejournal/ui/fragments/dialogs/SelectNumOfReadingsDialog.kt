@@ -9,6 +9,7 @@ import android.widget.*
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
 import com.pinkmoon.bloodpressurejournal.R
+import es.dmoral.toasty.Toasty
 import kotlin.ClassCastException
 
 class SelectNumOfReadingsDialog : DialogFragment() {
@@ -44,22 +45,20 @@ class SelectNumOfReadingsDialog : DialogFragment() {
                     val action = SelectNumOfReadingsDialogDirections
                         .actionSelectNumOfReadingsDialogToBPReadingHolderFragment(1)
                     findNavController().navigate(action)
-//                    mListener.passUserReadingSelection(1)
-//                    dismiss()
                 }
                 R.id.rb_dialog_select_num_of_holder_three_readings -> {
                     val action = SelectNumOfReadingsDialogDirections
                         .actionSelectNumOfReadingsDialogToBPReadingHolderFragment(3)
                     findNavController().navigate(action)
-//                    mListener.passUserReadingSelection(3)
-//                    dismiss()
                 }
                 else -> {
-                    Toast.makeText(
-                        context,
-                        "You must make a selection first.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    context?.let { con ->
+                        Toasty.warning(
+                            con,
+                            getString(R.string.dialog_select_num_of_readings_none_selected),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                     // ensure we don't leave the dialog until the user either selects something,
                     // or taps on cancel out of the dialog
                     return@setOnClickListener

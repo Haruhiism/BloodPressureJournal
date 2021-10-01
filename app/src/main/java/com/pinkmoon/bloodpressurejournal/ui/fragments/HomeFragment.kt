@@ -20,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.pinkmoon.bloodpressurejournal.*
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.*
+import es.dmoral.toasty.Toasty
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
@@ -116,11 +117,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun displayToastWithEntryDetails(e: Entry?) {
-        Toast.makeText(
-            context,
-            "Systolic: ${e?.y?.toInt()} Diastolic: ${e?.x?.toInt()}",
-            Toast.LENGTH_LONG
-        ).show()
+        context?.let {
+            Toasty.info(
+                it,
+                "Systolic: ${e?.y?.toInt()} Diastolic: ${e?.x?.toInt()}",
+                Toast.LENGTH_LONG
+            ).show()
+        }
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
