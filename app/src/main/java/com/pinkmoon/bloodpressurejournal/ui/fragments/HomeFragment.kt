@@ -18,8 +18,7 @@ import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import com.pinkmoon.bloodpressurejournal.BloodPressureJournalApplication
-import com.pinkmoon.bloodpressurejournal.R
+import com.pinkmoon.bloodpressurejournal.*
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.*
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -83,8 +82,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun defineObservers() {
         // observers
-        bpReadingViewModel.bpReadingsByDate("${getDateToday()} $DAY_TIME_START",
-            "${getDateToday()} $DAY_TIME_END")
+        bpReadingViewModel.bpReadingsByDate("${BPDate.getDateToday()} $DAY_TIME_START",
+            "${BPDate.getDateToday()} $DAY_TIME_END")
             .observe(viewLifecycleOwner, {
                 bpReading ->
                 bpReading.let {

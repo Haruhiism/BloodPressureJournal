@@ -10,12 +10,14 @@ import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.pinkmoon.bloodpressurejournal.BloodPressureJournalApplication
-import com.pinkmoon.bloodpressurejournal.R
+import com.pinkmoon.bloodpressurejournal.*
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.*
+import com.pinkmoon.bloodpressurejournal.ui.fragments.dialogs.DisplayBPCatInfoDialogDirections
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -150,10 +152,10 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
                         // Do nothing
                     }
                     1 -> {
-                        displayDataRange(getWeekRange())
+                        displayDataRange(BPDate.getWeekRange())
                     }
                     2 -> {
-                        displayDataToday(getDateToday())
+                        displayDataToday(BPDate.getDateToday())
                     }
                     3 -> {
                         callMDTPDialog()
@@ -169,6 +171,34 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
             }
 
         }
+
+        // titles
+        tvTitleIdeal.setOnClickListener {
+            findNavController()
+                .navigate(getNavActionFromTitle(getString(R.string.frag_stats_title_ideal)))
+        }
+        tvTitleElevated.setOnClickListener {
+            findNavController()
+                .navigate(getNavActionFromTitle(getString(R.string.frag_stats_title_elevated)))
+        }
+        tvTitleHyp1.setOnClickListener {
+            findNavController()
+                .navigate(getNavActionFromTitle(getString(R.string.frag_stats_title_hyp_stage_1)))
+        }
+        tvTitleHyp2.setOnClickListener {
+            findNavController()
+                .navigate(getNavActionFromTitle(getString(R.string.frag_stats_title_hyp_stage_2)))
+        }
+        tvTitleHypCrisis.setOnClickListener {
+            findNavController()
+                .navigate(getNavActionFromTitle(getString(R.string.frag_stats_title_hyp_crisis)))
+        }
+
+    }
+
+    private fun getNavActionFromTitle(title: String) : NavDirections {
+        return StatisticsFragmentDirections
+            .actionStatisticsFragmentToDisplayBPCatInfoDialog(title)
     }
 
     private fun displayDataToday(today: String) {

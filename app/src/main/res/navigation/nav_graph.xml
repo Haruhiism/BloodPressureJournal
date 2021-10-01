@@ -66,12 +66,25 @@
         android:id="@+id/statisticsFragment"
         android:name="com.pinkmoon.bloodpressurejournal.ui.fragments.statistics.StatisticsFragment"
         android:label="@string/fragment_statistics_title"
-        tools:layout="@layout/fragment_statistics" />
+        tools:layout="@layout/fragment_statistics" >
+        <action
+            android:id="@+id/action_statisticsFragment_to_displayBPCatInfoDialog"
+            app:destination="@id/displayBPCatInfoDialog" />
+    </fragment>
     <fragment
         android:id="@+id/newReadingFragment"
         android:name="com.pinkmoon.bloodpressurejournal.ui.fragments.new_reading.NewReadingFragment"
         android:label="@string/fragment_reading_holder_title"
         tools:layout="@layout/fragment_new_reading" />
+    <dialog
+        android:id="@+id/displayBPCatInfoDialog"
+        android:name="com.pinkmoon.bloodpressurejournal.ui.fragments.dialogs.DisplayBPCatInfoDialog"
+        android:label="dialog_display_bp_cat_info"
+        tools:layout="@layout/dialog_display_bp_cat_info" >
+        <argument
+            android:name="selectedBPCatInfoTitle"
+            app:argType="string" />
+    </dialog>
 
 
 </navigation>
