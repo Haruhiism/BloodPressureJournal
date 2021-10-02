@@ -4,6 +4,7 @@
     <string name="fragment_terms_title">Terms &amp; Conditions</string>
     <string name="fragment_statistics_title">Statistics</string>
     <string name="fragment_daily_readings_title">Daily Readings</string>
+    <string name="fragment_med_reminders_title">Medication Reminders</string>
     <string name="add_reading">Add Reading</string>
 
     <!-- FragmentHome -->

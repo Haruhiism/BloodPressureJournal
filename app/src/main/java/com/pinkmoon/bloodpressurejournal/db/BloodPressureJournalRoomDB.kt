@@ -6,12 +6,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReading
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReadingDao
+import com.pinkmoon.bloodpressurejournal.db.medication.Medication
+import com.pinkmoon.bloodpressurejournal.db.medication.MedicationDao
 
-@Database(entities = arrayOf(BPReading::class), version = 1)
+@Database(entities = arrayOf(BPReading::class, Medication::class), version = 1)
 public abstract class BloodPressureJournalRoomDB : RoomDatabase() {
 
     // Dao List
-    abstract fun bpReadingDao(): BPReadingDao
+    abstract fun bpReadingDao():    BPReadingDao
+    abstract fun medicationDao():   MedicationDao
 
     // Companion Object
     companion object {

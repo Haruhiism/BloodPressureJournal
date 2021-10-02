@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity(),
 
         // Set up bottom navigation bar
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.homeFragment, R.id.statisticsFragment) // set of top level destinations
+            setOf(R.id.homeFragment, R.id.statisticsFragment, R.id.medicationRemindersFragment) // set of top level destinations
         )
 
         // connects the action bar (toolbar) & bottom nav bar to the nav controller

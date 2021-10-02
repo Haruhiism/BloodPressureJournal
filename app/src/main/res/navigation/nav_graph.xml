@@ -85,6 +85,11 @@
             android:name="selectedBPCatInfoTitle"
             app:argType="string" />
     </dialog>
+    <fragment
+        android:id="@+id/medicationRemindersFragment"
+        android:name="com.pinkmoon.bloodpressurejournal.ui.fragments.med_reminders.MedicationRemindersFragment"
+        android:label="@string/fragment_med_reminders_title"
+        tools:layout="@layout/fragment_medication_reminders" />
 
 
 </navigation>
