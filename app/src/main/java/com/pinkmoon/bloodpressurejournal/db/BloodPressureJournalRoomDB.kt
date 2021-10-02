@@ -8,13 +8,19 @@ import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReading
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReadingDao
 import com.pinkmoon.bloodpressurejournal.db.medication.Medication
 import com.pinkmoon.bloodpressurejournal.db.medication.MedicationDao
+import com.pinkmoon.bloodpressurejournal.db.reminder.Reminder
+import com.pinkmoon.bloodpressurejournal.db.reminder.ReminderDao
 
-@Database(entities = arrayOf(BPReading::class, Medication::class), version = 1)
+@Database(entities = arrayOf(BPReading::class,
+                            Medication::class,
+                            Reminder::class),
+    version = 1)
 public abstract class BloodPressureJournalRoomDB : RoomDatabase() {
 
     // Dao List
     abstract fun bpReadingDao():    BPReadingDao
     abstract fun medicationDao():   MedicationDao
+    abstract fun reminderDao():     ReminderDao
 
     // Companion Object
     companion object {

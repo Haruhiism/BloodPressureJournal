@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity(),
 
         // Set up bottom navigation bar
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.homeFragment, R.id.statisticsFragment, R.id.medicationRemindersFragment) // set of top level destinations
+            setOf(R.id.homeFragment, R.id.statisticsFragment, R.id.medicationRemindersFragmentHolder) // set of top level destinations
         )
 
         // connects the action bar (toolbar) & bottom nav bar to the nav controller
@@ -79,23 +79,6 @@ class MainActivity : AppCompatActivity(),
         bottomNav.setupWithNavController(navController)
 
         rootView = findViewById<ConstraintLayout>(R.id.cl_activity_main_root_view)
-
-//        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
-//        val adapter = BPReadingListAdapter()
-//        recyclerView.adapter = adapter
-//        recyclerView.layoutManager = LinearLayoutManager(this)
-//
-//        bpReadingViewModel.allBpReadings.observe(this, { bpReading ->
-//            bpReading.let { adapter.submitList(it) }
-//        })
-
-//        val fab = findViewById<FloatingActionButton>(R.id.fab)
-//        fab.setOnClickListener {
-//            var dialogSelectNumOfReadingsDialog = SelectNumOfReadingsDialog()
-//            dialogSelectNumOfReadingsDialog.show(supportFragmentManager, "dialogSelectNumOfReadingsDialog")
-////            val intent = Intent(this@MainActivity, NewBPReadingActivity::class.java)
-////            startActivityForResult(intent, newBPReadingActivityRequestCode)
-//        }
     }
 
     // Options menu
