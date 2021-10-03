@@ -38,15 +38,20 @@ Android app that serves as a journal/log of blood pressure readings.
 - [ ] More settings as needed
 ![Dark mode](https://i.ibb.co/JtRybj2/Screenshot-1633124145.png)
 
+## Work in Progress:
+### Implementing medication reminders 
+- [x] Implement medication & reminder entities to model the data
+- [x] Set up appropriate navigation components
+- [ ] Setup AlarmManager to set the reminders
+- [ ] Set up appropriate Broadcast receivers (ONBOOT will be required in Manifest file to reset the reminders upon device restart)
+- [ ] Reminders will be daily and can be repeated on a user defined interval throughout the day (i.e. twice a day: 9am & 9pm, etc)
+  * Note that since medications are usually taken daily, not considering allowing the user to select the days to repeat. However, it may be an option later.
+- [ ] Make appropriate notification channels for the reminders
+
 ## Terrms & Conditions
 - [x] Implement the T&C fragment
 - [ ] Add the appropriate disclaimers & such
 
 ## Planned Features (not currently in progress)
-1. Add medication reminders 
-  * Requires the creation of a medication Entity (maybe a pure data class would be OK here)
-  * Would have to use Alarm/WorkManager to the reminders
-  * Reminders could be repeated on a user defined interval
-  * Appropriate notification channel would be set for this
-2. Add a tag/comment system that allows the user to attatch tags to their reading entries for them to sort by later
+1. Add a tag/comment system that allows the user to attatch tags to their reading entries for them to sort by later
   * Tags could also be added to the exported data file and could be used as the main filter if the user desires
