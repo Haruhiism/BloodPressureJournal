@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.pinkmoon.bloodpressurejournal.R
+import com.pinkmoon.bloodpressurejournal.ui.fragments.med_reminders.medications.MedicationsFragment
+import com.pinkmoon.bloodpressurejournal.ui.fragments.med_reminders.reminders.RemindersFragment
 
 class MedicationRemindersFragmentHolder : Fragment(R.layout.fragment_medication_reminders_holder) {
 

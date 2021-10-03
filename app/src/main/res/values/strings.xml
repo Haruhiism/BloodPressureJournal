@@ -6,6 +6,8 @@
     <string name="fragment_daily_readings_title">Daily Readings</string>
     <string name="fragment_med_reminders_title">Medication Reminders</string>
     <string name="add_reading">Add Reading</string>
+    <string name="add_medication">Add Medication</string>
+    <string name="add_reminder">Add Reminder</string>
 
     <!-- FragmentHome -->
     <string name="home_main_title">Day at glance</string>
