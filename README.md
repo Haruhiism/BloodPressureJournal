@@ -47,6 +47,8 @@ Android app that serves as a journal/log of blood pressure readings.
 - [ ] Reminders will be daily and can be repeated on a user defined interval throughout the day (i.e. twice a day: 9am & 9pm, etc)
   * Note that since medications are usually taken daily, not considering allowing the user to select the days to repeat. However, it may be an option later.
 - [ ] Make appropriate notification channels for the reminders
+![MedicationReminders Fragment](https://i.ibb.co/wwLtZx5/Screenshot-1633311515.png)
+![Add/Edit Medication](https://i.ibb.co/kgj5jpb/Screenshot-1633311535.png)
 
 ## Terrms & Conditions
 - [x] Implement the T&C fragment
