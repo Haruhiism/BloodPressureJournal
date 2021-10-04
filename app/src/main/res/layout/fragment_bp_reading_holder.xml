@@ -16,18 +16,7 @@
         android:background="@color/darkRed"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <!--toolbar is one component which is necessary
-            because if we not use this then title is not shown
-            when project executed-->
-<!--        <androidx.appcompat.widget.Toolbar-->
-<!--            android:id="@+id/toolbar"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_scrollFlags="scroll|enterAlways"-->
-<!--            app:popupTheme="@style/AppTheme.PopupOverlay" />-->
-
-        <!-- tablayout which contains which is
-             important to show tabs -->
+        <!-- tablayout: important to show tabs -->
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_tablayout"
             android:layout_width="match_parent"
@@ -37,8 +26,7 @@
             app:tabMode="fixed" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- view pager is used to open other fragment by using
-         left or right swip-->
+    <!-- view pager is used to open other fragment by using left or right swipe -->
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/tab_viewpager"
         android:layout_width="match_parent"

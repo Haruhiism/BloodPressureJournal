@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -12,9 +13,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pinkmoon.bloodpressurejournal.BPDate
 import com.pinkmoon.bloodpressurejournal.R
 
-class BPReadingListAdapter : ListAdapter<BPReading, BPReadingListAdapter.BPReadingViewHolder>(BPReadingComparator()) {
+class BPReadingListAdapter(private val listener: OnItemClickListener) : ListAdapter<BPReading, BPReadingListAdapter.BPReadingViewHolder>(BPReadingComparator()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BPReadingViewHolder {
-        return BPReadingViewHolder.create(parent)
+        val view: View = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_bp_readings, parent, false)
+        return BPReadingViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: BPReadingViewHolder, position: Int) {
@@ -28,12 +31,22 @@ class BPReadingListAdapter : ListAdapter<BPReading, BPReadingListAdapter.BPReadi
         holder.setCardColor(context, current)
     }
 
-    class BPReadingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class BPReadingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val bpReadingSystolicVal: TextView = itemView.findViewById(R.id.tv_item_bp_readings_systolic)
         private val bpReadingDiastolicVal: TextView = itemView.findViewById(R.id.tv_item_bp_readings_diastolic)
         private val bpReadingsPulseVal: TextView = itemView.findViewById(R.id.tv_item_bp_readings_pulse)
         private val bpReadingsTimestamp: TextView = itemView.findViewById(R.id.tv_item_bp_readings_timestamp)
         private val bpReadingCard: CardView = itemView.findViewById(R.id.cv_item_bp_readings_card)
+
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition // the position of the viewholder
+                if(position != RecyclerView.NO_POSITION) {
+                    val bpReading = getItem(position)
+                    listener.onItemClick(bpReading)
+                }
+            }
+        }
 
         fun bindSystolicVal(text: String?) {
             bpReadingSystolicVal.text = text
@@ -66,27 +79,26 @@ class BPReadingListAdapter : ListAdapter<BPReading, BPReadingListAdapter.BPReadi
                 bpReadingCard.setCardBackgroundColor(context.getColor(R.color.bloodyRed))
             }
         }
+    }
 
-        companion object {
-            fun create(parent: ViewGroup) : BPReadingViewHolder {
-                val view: View = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_bp_readings, parent, false)
-
-                view.setOnClickListener {
-
-                }
-                return BPReadingViewHolder(view)
-            }
-        }
+    interface OnItemClickListener {
+        fun onItemClick(bpReading: BPReading)
     }
 
     class BPReadingComparator : DiffUtil.ItemCallback<BPReading>() {
+        // do two items represent the same logical item? since an item
+        // can change its position on the list without actually changing its contents;
+        // with this method the callback knows when it has to move an item around
         override fun areItemsTheSame(oldItem: BPReading, newItem: BPReading): Boolean {
-            return oldItem == newItem
+            return oldItem.pId == newItem.pId
         }
 
         override fun areContentsTheSame(oldItem: BPReading, newItem: BPReading): Boolean {
-            return oldItem.pId == newItem.pId
+            return (oldItem.pId == newItem.pId &&
+                oldItem.timeStamp == newItem.timeStamp &&
+                    oldItem.diastolicValue == newItem.diastolicValue &&
+                    oldItem.systolicValue == newItem.systolicValue &&
+                    oldItem.pulseValue == newItem.pulseValue)
         }
 
     }
