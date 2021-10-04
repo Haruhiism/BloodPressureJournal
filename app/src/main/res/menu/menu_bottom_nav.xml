@@ -11,4 +11,9 @@
         android:title="@string/fragment_statistics_title"
         android:icon="@drawable/ic_statistics" />
 
+    <item
+        android:id="@+id/medicationRemindersFragmentHolder"
+        android:title="@string/fragment_med_reminders_title"
+        android:icon="@drawable/ic_medication" />
+
 </menu>

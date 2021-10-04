@@ -22,7 +22,7 @@ import com.pinkmoon.bloodpressurejournal.*
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.*
 import es.dmoral.toasty.Toasty
 
-class HomeFragment : Fragment(R.layout.fragment_home) {
+class HomeFragment : Fragment(R.layout.fragment_home), BPReadingListAdapter.OnItemClickListener {
 
     // local vars
     private val bpReadingViewModel: BPReadingViewModel by viewModels {
@@ -34,7 +34,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val args: HomeFragmentArgs by navArgs()
 
     private lateinit var bpReadingsByDate: List<BPReading>
-    private var bpReadingsAdapter = BPReadingListAdapter()
+    private var bpReadingsAdapter = BPReadingListAdapter(this)
 
     // widgets
     lateinit var fabMain: FloatingActionButton
@@ -168,5 +168,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         scDailyReadings.invalidate()
         scDailyReadings.notifyDataSetChanged()
+    }
+
+    override fun onItemClick(bpReading: BPReading) {
+        context?.let { Toasty.normal(it, bpReading.timeStamp, Toast.LENGTH_SHORT).show() }
     }
 }

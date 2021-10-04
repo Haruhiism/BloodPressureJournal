@@ -4,7 +4,10 @@
     <string name="fragment_terms_title">Terms &amp; Conditions</string>
     <string name="fragment_statistics_title">Statistics</string>
     <string name="fragment_daily_readings_title">Daily Readings</string>
+    <string name="fragment_med_reminders_title">Medication Reminders</string>
     <string name="add_reading">Add Reading</string>
+    <string name="add_medication">Add Medication</string>
+    <string name="add_reminder">Add Reminder</string>
 
     <!-- FragmentHome -->
     <string name="home_main_title">Day at glance</string>
@@ -100,5 +103,18 @@
 
     <string name="frag_stats_no_data_pie_chart">Select a range to display.</string>
     <string name="frag_stats_reading_overview">BP Readings Overview</string>
+
+    <!-- Fragment Medication/New Medication -->
+    <string name="frag_new_medication_name">Medication name</string>
+    <string name="frag_new_medication_dose">Medication dose (in mg)</string>
+    <string name="frag_new_medication_quantity">Quantity per dosage</string>
+
+    <string name="frag_rv_medication_name">Name</string>
+    <string name="frag_rv_medication_dose">Dosage (mg)</string>
+    <string name="frag_rv_medication_quantity">Qty</string>
+
+    <string name="frag_new_medication_saved">Medication saved.</string>
+    <string name="frag_new_medication_blank_error">Please fill all fields.</string>
+
 
 </resources>

@@ -25,10 +25,11 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.pinkmoon.bloodpressurejournal.*
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.*
 import com.pinkmoon.bloodpressurejournal.ui.fragments.dialogs.DisplayBPCatInfoDialogDirections
+import es.dmoral.toasty.Toasty
 import java.text.SimpleDateFormat
 import java.util.*
 
-class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
+class StatisticsFragment : Fragment(R.layout.fragment_statistics), BPReadingListAdapter.OnItemClickListener {
 
     // widgets
     private lateinit var spnrDateRange: Spinner
@@ -48,7 +49,7 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
     private lateinit var statisticsFragmentViewModel: StatisticsFragmentViewModel
     private var selectedSpinnerField: Int = 0 // 0 = select a range to display (default)
 
-    private var bpReadingAdapter = BPReadingListAdapter()
+    private var bpReadingAdapter = BPReadingListAdapter(this)
 
     private lateinit var startDate: String
     private lateinit var endDate: String
@@ -303,5 +304,9 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
         pcLegend.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
         pcLegend.setDrawInside(false)
         pcLegend.isEnabled = true
+    }
+
+    override fun onItemClick(bpReading: BPReading) {
+        context?.let { Toasty.normal(it, bpReading.timeStamp, Toast.LENGTH_SHORT).show() }
     }
 }
