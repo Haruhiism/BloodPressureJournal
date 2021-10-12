@@ -116,5 +116,7 @@
     <string name="frag_new_medication_saved">Medication saved.</string>
     <string name="frag_new_medication_blank_error">Please fill all fields.</string>
 
+    <!-- Fragment Reminder/New Reminder -->
+    <string name="frag_new_reminder_time">Tap here to set the time</string>
 
 </resources>

@@ -15,11 +15,11 @@ import java.text.SimpleDateFormat
                         onDelete = CASCADE)
         )
 )
-class Reminder(
-    var startDate: String,
+data class Reminder(
+    var startDate: String = getDateTimeStamp(),
     var notificationSent: Boolean,
     var medId: Int,
-    var scheduledTime: String = getDateTimeStamp(),
+    var scheduledTime: String,
     @PrimaryKey(autoGenerate = true) var pId: Int = 0
 ) {
     companion object {
