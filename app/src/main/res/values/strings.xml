@@ -48,6 +48,9 @@
     <string name="dialog_okay">Okay</string>
     <string name="dialog_select_num_of_readings_none_selected">You must make a selection first.</string>
 
+    <!-- dialog select med name-->
+    <string name="dialog_select_medication_name_title">Choose a medication</string>
+
     <!-- multiple readings activity/fragment -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_reading_holder">Log a BP reading</string>
@@ -117,6 +120,7 @@
     <string name="frag_new_medication_blank_error">Please fill all fields.</string>
 
     <!-- Fragment Reminder/New Reminder -->
-    <string name="frag_new_reminder_time">Tap here to set the time</string>
+    <string name="frag_new_set_reminder_time">Tap here to set the time</string>
+    <string name="frag_new_reminder_time">Reminder time</string>
 
 </resources>

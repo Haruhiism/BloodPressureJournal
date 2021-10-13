@@ -33,11 +33,13 @@ import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReading
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReadingListAdapter
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReadingViewModel
 import com.pinkmoon.bloodpressurejournal.db.bp_reading.BPReadingViewModelFactory
+import com.pinkmoon.bloodpressurejournal.ui.fragments.dialogs.SelectMedicationNameDialog
 import com.pinkmoon.bloodpressurejournal.ui.fragments.dialogs.SelectNumOfReadingsDialog
 import com.pinkmoon.bloodpressurejournal.ui.fragments.new_reading.NewReadingFragment
 
 class MainActivity : AppCompatActivity(),
-    SelectNumOfReadingsDialog.SelectNumOfReadingsDialogListener {
+    SelectNumOfReadingsDialog.SelectNumOfReadingsDialogListener,
+    SelectMedicationNameDialog.SelectMedicationNameDialogListener {
 
     private val newBPReadingActivityRequestCode = 1
 

@@ -1,6 +1,7 @@
 package com.pinkmoon.bloodpressurejournal.db.join_redication_reminder
 
 import android.os.Parcelable
+import androidx.annotation.Nullable
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
@@ -24,7 +25,7 @@ data class JoinMedicationReminder(
     val dosage: Double,
     val quantity: Int,
     val remId: Int,
-    val scheduledTime: String,
+    @Nullable val scheduledTime: String?,
     @PrimaryKey(autoGenerate = true) var pId: Int = 0
 ) : Parcelable {
 }

@@ -7,6 +7,7 @@
         <entry key="..\:/Users/Cristian/pink_moon_apps/BloodPressureJournal/app/src/main/res/layout/activity_main.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Cristian/pink_moon_apps/BloodPressureJournal/app/src/main/res/layout/activity_new_bpreading.xml" value="0.1" />
         <entry key="..\:/Users/Cristian/pink_moon_apps/BloodPressureJournal/app/src/main/res/layout/dialog_display_bp_cat_info_dialog.xml" value="0.20677083333333332" />
+        <entry key="..\:/Users/Cristian/pink_moon_apps/BloodPressureJournal/app/src/main/res/layout/dialog_select_medication_name.xml" value="0.192481884057971" />
         <entry key="..\:/Users/Cristian/pink_moon_apps/BloodPressureJournal/app/src/main/res/layout/dialog_select_num_of_readings.xml" value="0.22" />
         <entry key="..\:/Users/Cristian/pink_moon_apps/BloodPressureJournal/app/src/main/res/layout/fragment_bp_reading_holder.xml" value="0.1" />
         <entry key="..\:/Users/Cristian/pink_moon_apps/BloodPressureJournal/app/src/main/res/layout/fragment_home.xml" value="0.33" />
@@ -20,6 +21,7 @@
         <entry key="..\:/Users/Cristian/pink_moon_apps/BloodPressureJournal/app/src/main/res/layout/fragment_statistics.xml" value="0.22" />
         <entry key="..\:/Users/Cristian/pink_moon_apps/BloodPressureJournal/app/src/main/res/layout/fragment_terms.xml" value="0.1" />
         <entry key="..\:/Users/Cristian/pink_moon_apps/BloodPressureJournal/app/src/main/res/layout/item_bp_readings.xml" value="0.14221014492753623" />
+        <entry key="..\:/Users/Cristian/pink_moon_apps/BloodPressureJournal/app/src/main/res/layout/item_join_medication_reminder.xml" value="0.192481884057971" />
         <entry key="..\:/Users/Cristian/pink_moon_apps/BloodPressureJournal/app/src/main/res/layout/item_medication.xml" value="0.21603260869565216" />
         <entry key="..\:/Users/Cristian/pink_moon_apps/BloodPressureJournal/app/src/main/res/layout/item_reminder.xml" value="0.192481884057971" />
         <entry key="..\:/Users/Cristian/pink_moon_apps/BloodPressureJournal/app/src/main/res/layout/item_rv_last_five_readings.xml" value="0.25" />

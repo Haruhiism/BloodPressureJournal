@@ -13,4 +13,7 @@ interface JoinMedicationReminderDao {
 
     @Query("SELECT table_medication.pId AS medId, table_medication.name, table_medication.dosage, table_medication.quantity, table_reminder.pId AS remId, table_reminder.scheduledTime, table_medication.pId as pId FROM table_medication LEFT JOIN table_reminder ON table_medication.pId = table_reminder.medId")
     fun getAllMedicationReminders(): Flow<List<JoinMedicationReminder>>
+
+    @Query("SELECT table_medication.pId AS medId, table_medication.name, table_medication.dosage, table_medication.quantity, table_reminder.pId AS remId, table_reminder.scheduledTime, table_medication.pId as pId FROM table_medication LEFT JOIN table_reminder ON table_medication.pId = table_reminder.medId WHERE table_medication.name = :medName")
+    fun getMedicationRemindersByName(medName: String) : Flow<List<JoinMedicationReminder>>
 }

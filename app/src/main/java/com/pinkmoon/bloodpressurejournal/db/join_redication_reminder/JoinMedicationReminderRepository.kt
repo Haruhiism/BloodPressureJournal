@@ -6,4 +6,7 @@ class JoinMedicationReminderRepository(private val joinMedicationReminderDao: Jo
 
     val allMedicationReminders: Flow<List<JoinMedicationReminder>> =
         joinMedicationReminderDao.getAllMedicationReminders()
+
+    fun getMedicationRemindersByName(mName: String): Flow<List<JoinMedicationReminder>> =
+        joinMedicationReminderDao.getMedicationRemindersByName(mName)
 }

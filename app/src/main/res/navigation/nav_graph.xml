@@ -98,18 +98,13 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_medicationRemindersFragmentHolder_to_newReminderFragment"
-            app:destination="@id/newReminderFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpToInclusive="true" />
         <argument
             android:name="medicationAdded"
             app:argType="boolean"
             android:defaultValue="false" />
+        <action
+            android:id="@+id/action_medicationRemindersFragmentHolder_to_selectMedicationNameDialog"
+            app:destination="@id/selectMedicationNameDialog" />
     </fragment>
     <fragment
         android:id="@+id/newMedicationFragment"
@@ -139,6 +134,8 @@
             app:enterAnim="@anim/slide_in_bottom"
             app:popUpTo="@id/medicationRemindersFragmentHolder"
             app:popUpToInclusive="true" />
+        <argument android:name="selectedMedName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/medicationsFragment"
@@ -150,6 +147,18 @@
         android:name="com.pinkmoon.bloodpressurejournal.ui.fragments.med_reminders.reminders.RemindersFragment"
         android:label="fragment_reminders"
         tools:layout="@layout/fragment_reminders" />
+    <dialog
+        android:id="@+id/selectMedicationNameDialog"
+        android:name="com.pinkmoon.bloodpressurejournal.ui.fragments.dialogs.SelectMedicationNameDialog"
+        android:label="dialog_select_medication_name"
+        tools:layout="@layout/dialog_select_medication_name">
+        <action
+            android:id="@+id/action_selectMedicationNameDialog_to_newReminderFragment"
+            app:destination="@id/newReminderFragment" />
+        <argument
+            android:name="medNamesList"
+            app:argType="string[]" />
+    </dialog>
 
 
 </navigation>

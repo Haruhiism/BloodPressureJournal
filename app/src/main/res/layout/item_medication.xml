@@ -43,8 +43,6 @@
             android:textAlignment="viewEnd"
             android:textSize="14sp"
             tools:text="2" />
-
-
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
