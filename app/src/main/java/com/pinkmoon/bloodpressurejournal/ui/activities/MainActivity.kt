@@ -72,7 +72,11 @@ class MainActivity : AppCompatActivity(),
 
         // Set up bottom navigation bar
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.homeFragment, R.id.statisticsFragment, R.id.medicationRemindersFragmentHolder) // set of top level destinations
+            setOf(
+                R.id.homeFragment,
+                R.id.statisticsFragment,
+                R.id.medicationRemindersFragmentHolder
+            ) // set of top level destinations
         )
 
         // connects the action bar (toolbar) & bottom nav bar to the nav controller
@@ -89,7 +93,10 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_options, menu) // this is how we activate the menu (or link it up rather)
+        menuInflater.inflate(
+            R.menu.menu_options,
+            menu
+        ) // this is how we activate the menu (or link it up rather)
         return true
     }
 
@@ -107,7 +114,7 @@ class MainActivity : AppCompatActivity(),
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode == newBPReadingActivityRequestCode && resultCode == Activity.RESULT_OK) {
+        if (requestCode == newBPReadingActivityRequestCode && resultCode == Activity.RESULT_OK) {
             data?.getStringExtra(NewBPReadingActivity.EXTRA_REPLY)?.let {
                 val reading = BPReading(it.toInt(), 74, 69)
                 bpReadingViewModel.insert(reading)
@@ -121,29 +128,12 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
-    private fun checkDarkModePref(){
+    private fun checkDarkModePref() {
         val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         val darkModePref = sharedPref.getBoolean(getString(R.string.saved_dark_mode_key), false)
 
-        if(darkModePref) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        if (darkModePref) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
     }
 
-    override fun passUserReadingSelection(numOfReadings: Int) {
-
-//        Toast.makeText(
-//            applicationContext,
-//            "User selected $numOfReadings reading(s).",
-//            Toast.LENGTH_SHORT
-//        ).show()
-    }
-
-//    override fun passBPReadingObj(bpReading: BPReading, fragmentTitle: String) {
-//        var snack = Snackbar.make(rootView,
-//            "Systolic: ${bpReading.systolicValue}, " +
-//                    "Diastolic: ${bpReading.diastolicValue}, " +
-//                    "Pulse: ${bpReading.pulseValue} " +
-//                    "from $fragmentTitle",
-//            Snackbar.LENGTH_LONG)
-//        snack.show()
-//    }
+    override fun passUserReadingSelection(numOfReadings: Int) {}
 }
